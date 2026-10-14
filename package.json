@@ -1,0 +1,34 @@
+{
+  "name": "ilias-sync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "dev": "tsx src/cli.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bin": {
+    "ilias-sync": "dist/cli.js"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.7.3",
+    "cheerio": "^1.2.0",
+    "commander": "^15.0.0",
+    "fetch-cookie": "^3.2.0",
+    "p-limit": "^7.3.3",
+    "tough-cookie": "^6.0.2",
+    "zod": "^4.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}

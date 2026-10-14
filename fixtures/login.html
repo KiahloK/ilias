@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta property="og:type" content="website" />
+<meta property="og:title" content="Permission Denied" />
+<meta property="og:url" content="https://ilias3.uni-stuttgart.de" />
+<meta property="og:image" content="https://ilias3.uni-stuttgart.de/Customizing/skin/ustutt/ustutt/../images/logo/Sharing.jpg" />
+<meta property="og:image:type" content="image/jpg" />
+<meta property="og:site_title" content="ilias3.uni-stuttgart.de" />
+
+
+	
+
+	<title>Login to ILIAS: ILIAS für Lehre und Lernen – Universität Stuttgart</title>
+	<link rel="icon" href="./Customizing/skin/ustutt/ustutt/../images/logo/favicon.ico" type="image/x-icon">
+
+	<!-- This is the safest place for now to initialize our global namespace which is -->
+	<!-- used by several scripts included on the way to expose their business logic.  -->
+	<script type="application/javascript">var il = il ||{}; window.il = il;</script>
+
+	<style>
+		
+	</style>
+
+	
+	<link rel="stylesheet" type="text/css" href="./components/ILIAS/COPage/css/content.css?_v=10_12" />
+	
+	<link rel="stylesheet" type="text/css" href="./components/ILIAS/COPage/css/syntaxhighlight.css?_v=10_12" />
+	
+	<link rel="stylesheet" type="text/css" href="assets/css/tagify.css?_v=10_12" />
+	
+	<link rel="stylesheet" type="text/css" href="./components/ILIAS/COPage/css/content_base.css?_v=10_12" />
+	
+	<link rel="stylesheet" type="text/css" href="./Customizing/skin/ustutt/ustutt/ustutt.css?_v=10_12" />
+	
+	<link rel="stylesheet" type="text/css" href="assets/css/delos_cont.css?_v=10_12" />
+	
+	<link rel="stylesheet" type="text/css" href="./node_modules/jstree/dist/themes/default/style.min.css?_v=10_12" />
+	
+</head>
+<body>
+	
+
+	<div class="il-page-overlay">
+		<div class="il-toast-container" aria-live="polite" ></div>
+	</div>
+
+	<div class="il-layout-page" >
+		<header>
+			<div class="header-inner">
+				<div class="il-logo">
+					<span class="hidden-xs">
+<a href="https://ilias3.uni-stuttgart.de/go/root/1">
+
+
+
+<img src="./Customizing/skin/ustutt/ustutt/../images/logo/HeaderIcon.svg" class="img-standard" alt="Logo ILIAS - to the start page" />
+
+
+
+
+
+</a>
+</span>
+					<span class="visible-xs-block">
+<a href="https://ilias3.uni-stuttgart.de/go/root/1">
+
+
+
+<img src="./Customizing/skin/ustutt/ustutt/../images/logo/HeaderIconResponsive.svg" class="img-standard" alt="Logo ILIAS - to the start page" />
+
+
+
+
+
+</a>
+</span>
+					<div class="il-pagetitle">
+						ILIAS für Lehre und Lernen – Universität Stuttgart
+					</div>
+				</div>
+
+				
+				<ul class="il-maincontrols-metabar" role="menubar" style="visibility: hidden" aria-label="Metabar" id="il_ui_fw_6acbd87f268ad2_00740318" ><!--if done via class/css-files, visibility is being applied too late -->
+	
+	<li role="none">
+		<a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de" id="il_ui_fw_6acbd87f25f2e9_80406240"><span class="glyph"  role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-question-sign
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">Help</span></a>
+		
+	</li>
+	
+	<li role="none">
+		<button class="btn btn-bulky" id="il_ui_fw_6acbd87f2610f4_80644729"  role="menuitem"  aria-haspopup="true"    ><span class="glyph"  role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-lang
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">Language</span></button>
+
+		
+		<div class="il-metabar-slates">
+			<div class="il-maincontrols-slate disengaged" id="il_ui_fw_6acbd87f266539_47978325">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+		<ul>
+			
+			<li><a lang="de" hreflang="de" class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/login.php?client_id=Uni_Stuttgart&cmd=force_login&lang=de">
+<img
+ class="icon none small"
+ src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDMyMCAzMjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyMCAzMjA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDA0Nzc1MTgzNzAxNzcyMjkwMzQ5MDAwMDAwOTM5MjQyNjM5Mzc4Mzc4Mzg1N18pO2ZpbGw6IzRDNjU4Njt9DQo8L3N0eWxlPg0KPGc+DQoJPGc+DQoJCTxkZWZzPg0KCQkJPHJlY3QgaWQ9IlNWR0lEXzFfIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIvPg0KCQk8L2RlZnM+DQoJCTxjbGlwUGF0aCBpZD0iU1ZHSURfMDAwMDAxNjU5Mjc3Njk0MzI5ODM0MDA2OTAwMDAwMTQyOTU5NjQxMjMxNjc4OTQ5MjBfIj4NCgkJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzFfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJCTwvY2xpcFBhdGg+DQoJCTxwYXRoIHN0eWxlPSJjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDE2NTkyNzc2OTQzMjk4MzQwMDY5MDAwMDAxNDI5NTk2NDEyMzE2Nzg5NDkyMF8pO2ZpbGw6IzRDNjU4NjsiIGQ9Ik05MCw1MEg2MA0KCQkJYy01LjUsMC0xMCw0LjUtMTAsMTB2MjAwYzAsNS41LDQuNSwxMCwxMCwxMGgzMHYtMTVINjVWNjVoMjVWNTB6IE0yNzAsMjYwVjYwYzAtNS41LTQuNS0xMC0xMC0xMGgtMzB2MTVoMjV2MTkwaC0yNXYxNWgzMA0KCQkJQzI2NS41LDI3MCwyNzAsMjY1LjUsMjcwLDI2MCIvPg0KCTwvZz4NCjwvZz4NCjx0ZXh0CiAgIHN0eWxlPSIKICAgICAgZm9udC1zdHlsZTpub3JtYWw7CiAgICAgIGZvbnQtd2VpZ2h0Om5vcm1hbDsKICAgICAgZm9udC1zaXplOjhyZW07CiAgICAgIGZvbnQtZmFtaWx5OnNhbnMtc2VyaWY7CiAgICAgIGxldHRlci1zcGFjaW5nOjBweDsKICAgICAgZmlsbDojMDAwOwogICAgICBmaWxsLW9wYWNpdHk6MTsKICAgICIKICAgIHg9IjUwJSIKICAgIHk9IjU1JSIKICAgIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiCiAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogID5kZTwvdGV4dD48L3N2Zz4=" alt=""
+
+ data-abbreviation="de"
+/>
+<span class="bulky-label">Deutsch</span></a></li>
+			
+			<li><a lang="en" hreflang="en" class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/login.php?client_id=Uni_Stuttgart&cmd=force_login&lang=en">
+<img
+ class="icon none small"
+ src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDMyMCAzMjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyMCAzMjA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDA0Nzc1MTgzNzAxNzcyMjkwMzQ5MDAwMDAwOTM5MjQyNjM5Mzc4Mzc4Mzg1N18pO2ZpbGw6IzRDNjU4Njt9DQo8L3N0eWxlPg0KPGc+DQoJPGc+DQoJCTxkZWZzPg0KCQkJPHJlY3QgaWQ9IlNWR0lEXzFfIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIvPg0KCQk8L2RlZnM+DQoJCTxjbGlwUGF0aCBpZD0iU1ZHSURfMDAwMDAxNjU5Mjc3Njk0MzI5ODM0MDA2OTAwMDAwMTQyOTU5NjQxMjMxNjc4OTQ5MjBfIj4NCgkJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzFfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJCTwvY2xpcFBhdGg+DQoJCTxwYXRoIHN0eWxlPSJjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDE2NTkyNzc2OTQzMjk4MzQwMDY5MDAwMDAxNDI5NTk2NDEyMzE2Nzg5NDkyMF8pO2ZpbGw6IzRDNjU4NjsiIGQ9Ik05MCw1MEg2MA0KCQkJYy01LjUsMC0xMCw0LjUtMTAsMTB2MjAwYzAsNS41LDQuNSwxMCwxMCwxMGgzMHYtMTVINjVWNjVoMjVWNTB6IE0yNzAsMjYwVjYwYzAtNS41LTQuNS0xMC0xMC0xMGgtMzB2MTVoMjV2MTkwaC0yNXYxNWgzMA0KCQkJQzI2NS41LDI3MCwyNzAsMjY1LjUsMjcwLDI2MCIvPg0KCTwvZz4NCjwvZz4NCjx0ZXh0CiAgIHN0eWxlPSIKICAgICAgZm9udC1zdHlsZTpub3JtYWw7CiAgICAgIGZvbnQtd2VpZ2h0Om5vcm1hbDsKICAgICAgZm9udC1zaXplOjhyZW07CiAgICAgIGZvbnQtZmFtaWx5OnNhbnMtc2VyaWY7CiAgICAgIGxldHRlci1zcGFjaW5nOjBweDsKICAgICAgZmlsbDojMDAwOwogICAgICBmaWxsLW9wYWNpdHk6MTsKICAgICIKICAgIHg9IjUwJSIKICAgIHk9IjU1JSIKICAgIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiCiAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogID5lbjwvdGV4dD48L3N2Zz4=" alt=""
+
+ data-abbreviation="en"
+/>
+<span class="bulky-label">English</span></a></li>
+			
+		</ul>
+		
+		
+	</div>
+</div>
+
+		</div>
+		
+	</li>
+	
+	<li role="none">
+		<button class="btn btn-bulky" id="il_ui_fw_6acbd87f2681d2_23749989"  role="menuitem"  aria-haspopup="true"    ><span class="glyph"  role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-option-vertical
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+<span class="il-counter">
+	
+	<span class="badge badge-notify il-counter-status" style="display:none">0</span>
+	
+	
+</span>
+
+
+
+<span class="il-counter">
+	
+	
+	<span class="badge badge-notify il-counter-novelty" style="display:none">0</span>
+	
+</span>
+
+
+
+
+</span>
+<span class="bulky-label">Show More</span></button>
+
+		
+		<div class="il-metabar-slates">
+			<div class="il-maincontrols-slate disengaged" id="il_ui_fw_6acbd87f2688e7_12666343" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+		
+	</div>
+</div>
+
+		</div>
+		
+	</li>
+	
+</ul>
+
+			</div>
+		</header>
+
+		<div class="il-system-infos">
+			
+		</div>
+
+		<div class="nav il-maincontrols">
+			<div class="il-maincontrols-mainbar" id="il_ui_fw_6acbd87f275bd9_97738565">
+	<nav class="il-mainbar" aria-label="Main navigation bar">
+		
+		<div class="il-mainbar-tools-button">
+			<button class="btn btn-bulky engaged" id="il_ui_fw_6acbd87f274b15_75300301"     aria-pressed="true"  >
+<img
+ class="icon custom small"
+ src="./Customizing/skin/ustutt/ustutt/../images/standard/icon_tool.svg" alt=""
+
+
+/>
+<span class="bulky-label">Tools</span></button>
+
+		</div>
+		
+
+		<div class="il-mainbar-triggers">
+			<ul class="il-mainbar-entries" role="menubar" style="visibility: hidden"><!--if done via class/css-files, visibility is being applied too late -->
+				
+				<li role="none"><button class="btn btn-bulky" id="il_ui_fw_6acbd87f26a1d5_80218021"  role="menuitem"     >
+<img
+ class="icon rep small"
+ src="./Customizing/skin/ustutt/ustutt/../images/standard/icon_rep.svg" alt=""
+
+
+/>
+<span class="bulky-label">Repository</span></button>
+</li>
+				
+				<li role="none"><button class="btn btn-bulky" id="il_ui_fw_6acbd87f26cde9_75741297"  role="menuitem"     >
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/FYwxDoMwDAD_4hnVMTg4QYiXeLEgoR1oKxKxoP69MN6ddCd8YYBSP7utSTGXo1XkJSuGJIops6LjlruOjWIyYSEv0Zm7AikuVg0aeN-T-fnat0c51ktsFQYSIuYYxP_GcZpIIgmH4NxNEqLvmec_" alt=""
+
+
+/>
+<span class="bulky-label">Support</span></button>
+</li>
+				
+				<li role="none"><button class="btn btn-bulky" id="il_ui_fw_6acbd87f2728c3_23774787"  role="menuitem"     ><span class="glyph"  role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-option-horizontal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">More</span></button>
+</li>
+				
+			</ul>
+		</div>
+	</nav>
+
+	<div class="il-mainbar-slates">
+		<div class="il-mainbar-tools-entries">
+			<ul class="il-mainbar-tools-entries-bg" role="menubar">
+				
+				<li class="il-mainbar-tool-trigger-item" role="none"><button class="btn btn-bulky" id="il_ui_fw_6acbd87f2739b4_67593968"  role="menuitem"     >
+<img
+ class="icon hlps small"
+ src="./Customizing/skin/ustutt/ustutt/../images/standard/icon_hlps.svg" alt=""
+
+
+/>
+<span class="bulky-label">Help</span></button>
+</li>
+				
+			</ul>
+			
+		</div>
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_6acbd87f26c340_50387468" data-depth-level="1" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+		<ul>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/root/1">
+<img
+ class="icon root small"
+ src="./Customizing/skin/ustutt/ustutt/../images/standard/icon_root.svg" alt=""
+
+
+/>
+<span class="bulky-label">Repository – Home</span></a></li>
+			
+			<li><button class="btn btn-bulky" id="il_ui_fw_6acbd87f26b982_36372417"      >
+<img
+ class="icon custom small"
+ src="./Customizing/skin/ustutt/ustutt/../images/standard/icon_reptr.svg" alt=""
+
+
+/>
+<span class="bulky-label">Tree View</span></button>
+<div class="il-maincontrols-slate disengaged" id="il_ui_fw_6acbd87f26c161_81786597" data-depth-level="2">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+		
+		...
+		
+	</div>
+</div>
+</li>
+			
+		</ul>
+		
+		
+	</div>
+</div>
+
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_6acbd87f271556_73307127" data-depth-level="1" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+		<ul>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/lm/4590871">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/FYzBDoMgEET_hXMprizdxRi_hAsi9WAoBoiXpv9evLzM5E3mK04xidpy8Xt06l2v0akRrVMRyKl1ww5gRBs8ac3BYNQMhm234NTmmxcP8ekna86HvJF8OWS99hLPLENOz577JjUxARHqFyOMv3leFiALhMzDcLfIzBYN_QE" alt=""
+
+
+/>
+<span class="bulky-label">ILIAS-Handbuch</span></a></li>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/lm/1897919">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/FYzLCsMgFER_Jdx1qY-o9xpCoEshu27dGJO6aixVsin99xgYhjMcmB98YIBS8zekzbNXOWRryT0jbBQJPVuXqPRmCE2MnOuwIJE1wrOWNdQAN9jbiZvd49nNOeXOxbzfy5GaeVcYhOllT9Za8x_HaRJoBSoizq-lhCSNGk8" alt=""
+
+
+/>
+<span class="bulky-label">ILIAS an der Universität Stuttgart</span></a></li>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/lm/1897918">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/NYzLCoMwFAX_Jeu2MS81Iu677jYgN8lVQjWKCUIp_femi8JwYBZn3mQnHUl5O2BGQ6d0ckM5yjIaDAWYDPUeJWgGaLlCqyxwr7RjhhY8ZCAXEkvkEdZ9weC2mMZ7zHhM4HBcQnxew1-v6bXabbmlcy6vNZOO1YILzYSoP30_DKzRrJFtW1U_axVIDd59AQ" alt=""
+
+
+/>
+<span class="bulky-label">Die C@MPUS-ILIAS-Schnittstelle</span></a></li>
+			
+			<li>
+<hr class="il-divider-with-label" />
+<h4 class="il-divider">Für Dozent:innen</h4>
+
+</li>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/cat/4207944">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/FYy7DsIwDAD_xTPCTuy8qqpfEgmFtKkY2iISuiD-nbDd3XAfeMIAtR2vtC4RSz11RK86ausi2pkjEmUxXsJCTMJELCbpUCKqiHNqCS6w98kjH_stv_tru9Zz7XVrMChnmR17I99xnCblgnLiPdHfTC53r538AA" alt=""
+
+
+/>
+<span class="bulky-label">AI learning portal for employees</span></a></li>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/cat/3995213">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/FYw7DsMgEETvQh3CfwHL8kloCGxQChtkkJsodw_uZjRv3pc0spA-6hkLBvbulwwsgwgMuAnMowoMZdTwUt5lLywYw7WBZOcwqRxHJA9y3JJPOVrtg0rar3JiqzTV_TnzBPZBlnlWymkw9reu2ybs1GnnOL8bCswJeP4D" alt=""
+
+
+/>
+<span class="bulky-label">Didaktischer Wegweiser für ILIAS-Objekte</span></a></li>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/dcl/2310451">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/FYzLCsMgEAD_Zc-lurq-QsiX7GWN0VPbUCWX0n-vvQwMA_OBExbo4_WWdrCq_TKsXNKsjpImsmdVipDYPRNZK3t1KKR1raxwNhkCN3jOSTvzvV9t2mPAggEpEBpvvuu6bRgSBopR67_lmBx5Sz8" alt=""
+
+
+/>
+<span class="bulky-label">Good-Practice-Beispiele</span></a></li>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/cat/2079195">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/HcyxDsIwDATQf_GMiO24bVJV_ZIsoXE6AAW1URfEv2OxvTud7gNvGOForz2vmlw9Tk4OFzF2NTlBE8abVNbouRSKvaosGKLtKLmSW4YLbHZyzw_diu7X41ytejYYqffsIw3E32maZxrMEgLiP_lOhGv5AQ" alt=""
+
+
+/>
+<span class="bulky-label">Terminkoordination Scheinklausuren</span></a></li>
+			
+			<li>
+<hr class="il-divider-with-label" />
+<h4 class="il-divider">Für Student:innen</h4>
+
+</li>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/cat/4305043">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/HYxBCoMwEEXvMuvSzJjoJCKeJFCGaKQLtTSpm-LdnXb3_n_wvvCCHkrd37LM0eRyNNEgKzIFJf8jYceplYlS7qw4wZByUEHRTFIFbrBp5Jn27ZE-2lrv5Vj0XSv0xJ217MjiOQzjSByInfeI_4We7dy0Fw" alt=""
+
+
+/>
+<span class="bulky-label">AI learning portal for students</span></a></li>
+			
+			<li><a class="il-link link-bulky" href="https://ilias3.uni-stuttgart.de/go/cat/2114195">
+<img
+ class="icon custom small"
+ src="https://ilias3.uni-stuttgart.de/deliver.php/FcxNCsMgEEDhu7iudfyrGkJOMpupxmyaKlECpfTuNcvHB-_LKptY6-WgbUWR26lQ-ChRPH1E4ZJBIYM2IQCBd9oG6VJwZPMFKBJ1Yjf2HpP6og9v53astfBYdq7vowbunU3yoZUBZbT9zfOySDc-xnuAqyKFHHOCPw" alt=""
+
+
+/>
+<span class="bulky-label">Neu an der Uni Stuttgart? So gelingt dein digitaler Start!</span></a></li>
+			
+		</ul>
+		
+		
+	</div>
+</div>
+
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_6acbd87f272e16_00392178" data-depth-level="1" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+		
+	</div>
+</div>
+
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_6acbd87f274137_83915337" data-depth-level="1">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+		
+		<div id='ilHelpPanel'>&nbsp;</div>
+		
+	</div>
+</div>
+
+		
+
+		<div class="il-mainbar-close-slates">
+			<button class="btn btn-bulky" id="il_ui_fw_6acbd87f2759f8_83336265"      ><span class="glyph"  role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-triangle-left
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">Close</span></button>
+
+		</div>
+
+	</div>
+
+</div>
+
+		</div>
+
+		<!-- html5 main-tag is not supported in IE / div is needed -->
+		<main class="il-layout-page-content">
+			
+
+			
+
+
+<div id="mainspacekeeper" class="container-fluid ">
+	<div class="row" style="position: relative;">
+		
+		<div id="fixed_content" class=" ilContentFixed" >
+			<div id="mainscrolldiv" >
+				
+
+				
+
+				
+				
+
+				
+
+				<div class="ilClearFloat"></div>
+
+				
+				<div class="ilTabsContentOuter"><div class="clearfix"></div>
+				
+				<div class="il_after_tabs_spacing"></div>
+				
+				
+				
+				
+				
+
+					<div>
+						
+					</div>
+
+
+					<div id="ilContentContainer">
+						<div class="row">
+
+							<div id="il_center_col" class="col-sm-12">
+								
+								
+								<div class="ilMessageBox">
+	
+	
+</div>
+
+
+
+<div>
+	
+	
+
+
+ 
+<script>
+<!--
+focus();
+//-->
+</script>
+
+<a class="small" id="ilPageShowAdvContent" style="display:none; text-align:right;" href="#"><span>Show Advanced Knowledge</span><span>Hide Advanced Knowledge</span></a><!--COPage-PageTop--><!--ilPageTocH11--><h1 id="ilPageTocA11" class="ilc_Paragraph ilc_heading1_Headline1"><!--PageTocPH-->University of Stuttgart — ILIAS for teaching and learning<!--Break--></h1><div class="row row-flex row-flex-wrap"><div style="position: relative;" class=" col-sm-12 col-md-6 col-lg-6 col-xl-6"><div class="ilc_section_Information ilCOPageSection"><!--ilPageTocH22--><h2 id="ilPageTocA22" class="ilc_Paragraph ilc_heading2_Headline2"><!--PageTocPH-->Announcements<!--Break--></h2><div class="ilc_section_Attention ilCOPageSection"><div><div id="ilc_accordion_70_2" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="FirstOpen" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Please note: Retention period for ILIAS mails to be limited to three years in the future<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Growing volumes of data in ILIAS mean it is necessary to limit the retention period for ILIAS mails within ILIAS to three years (1,095 days) in the future. Older ILIAS mails will be automatically deleted beginning October 1st, 2026.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">Important: This does not affect ILIAS mails that have been forwarded as emails to your email address outside of ILIAS. These mails will remain in your email inbox.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><!--Break--></div><div><div id="ilc_accordion_70_5" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Learning Progress in ILIAS<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">In the summer semester 2025, we are making the so-called learning progress available in our ILIAS for Teaching and Learning.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">Learning progress is a function that provides both students and lecturers with an overview of individual progress in courses and learning modules. ILIAS records the processing status of various learning content such as tests, exercises, learning modules or pages. Students can see which content they have already completed and which is still outstanding to help them organize themselves. Lecturers receive an overview of the participants' learning status and can specifically identify where there may be a need for support. Learning progress is displayed in various status levels such as “Not started”, “In progress” or “Completed”, depending on the criteria entered. In this way, the function supports students in the structured processing of course materials and enables lecturers to provide better supervision and targeted support for students.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">The learning progress is primarily available in courses and groups that are newly created immediately, i.e. usually from the summer semester 2025. In older courses and groups, role rights may not yet be set appropriately and it is not possible to make up for this across the board.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">Users can find further information on learning progress in the official user manual in the chapters <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://docu.ilias.de/go/pg/172752_14634">4.2 Learning successes: Learning progress in objects</a> and <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://docu.ilias.de/go/pg/172842_14634">4.3 Learning successes: Learning progress</a> (which at the moment are only available in German as the open source community surrounding ILIAS lacks the capacity to provide translations; we recommend letting your browser translate the pages).<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><div><div id="ilc_accordion_70_6" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="FirstOpen" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Dashboard, Favorites and Tags<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div><div id="ilc_accordion_70_7" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Notes on the Tags<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard"><em class="ilc_em_Emph">Tags</em> can be understood as a keyword-grouped variant of favorites. Users can freely assign these keywords for themselves, even several per object, separated by a comma.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">This makes tags more versatile than favorites. For example, courses can be tagged both by semester and “crosswise” by subject, exam, etc.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">The assignment happens either via the Actions menu or (from outside) via the &#128317; menu.<!--Break--></p><div class="ilc_section_Mnemonic ilCOPageSection"><p class="ilc_Paragraph ilc_text_block_Standard">If you primarily use <em class="ilc_em_Emph">Tags</em> instead of <em class="ilc_em_Emph">Favorites</em>, your dashboard will be a little shorter again, similar to the display in ILIAS 7 and 8. For users with a large number of course and group memberships, this may help to provide a better overview. See also the tips in the dashboard in the next section.<!--Break--></p><!--Break--></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Dashboard tips<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Since ILIAS 7, you have been able to curate your <em class="ilc_em_Emph">Favorites</em> yourself. This means that you decide which courses, groups and other repository objects you want to have as Favorites—and you can also remove Favorites that you no longer need. We recommend limiting yourself to the courses and groups that you currently need frequently. As a rule of thumb, this should be no more than 10 to 15 items for a meaningful overview.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard"><em class="ilc_em_Emph">My Courses and Groups</em> has always shown all your course and group memberships (at least from the participant's point of view, those that are online). You can only remove them by leaving or, for lecturers, by <a class="ilc_link_IntLink" href="https://ilias3.uni-stuttgart.de/go/pg/311713" target="_top" id="il__pg_311713_70_1">deleting the respective object in the repository</a>.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">We generally recommend that lecturers delete old courses and groups that are no longer needed (including for students' exam preparation) from time to time. In our experience, courses that are older than four to five semesters are very rarely suitable as templates for up-to-date e-learning.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">You can also make use of the course template and working group categories in the respective study program categories to create and maintain your own template courses and groups, for example as material storage.<!--Break--></p><div class="ilc_section_Mnemonic ilCOPageSection"><p class="ilc_Paragraph ilc_text_block_Standard">Both the <em class="ilc_em_Emph">Favorites</em> and the <em class="ilc_em_Emph">My Courses and Groups</em> block on the Dashboard have a pagination function since ILIAS 9, so they do not necessarily show all objects at once (depending on the total number). If necessary, pay attention to the corresponding indicator in the upper right corner of the respective block.<!--Break--></p><div style="clear:both;"><figure class="ilc_media_cont_MediaContainer" style="&#10;&#9;&#9;&#9;position: relative;&#10;&#9;&#9;&#9;display:table;margin-right:auto; margin-left:0; "><div class="ilc_Mob" style="height:100%"><img border="0" style="width:100%" src="https://ilias3.uni-stuttgart.de/deliver.php/FcxLDsIwDEXRvXiMsJ2afKqqK8nEgSQjSkSjTqrunTA8V0_vhAYz7P3z1Zojlv0wEZk5omYdziHi5FQmDsmmUDgZ4302pM-xi_jSrnCDbZw0rfe21aF3h5mde1grQv5alnVlF0YRIvqrqGVDJD8/-/pag.png"/></div></figure></div><p class="ilc_Paragraph ilc_text_block_Standard">If one of your blocks shows more than one page, it might be advisable to tidy up and ‘clean out’, see above.<!--Break--></p><!--Break--></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><!--Break--></div><div class="ilc_section_Information ilCOPageSection"><!--ilPageTocH241--><h2 id="ilPageTocA241" class="ilc_Paragraph ilc_heading2_Headline2"><!--PageTocPH-->General Notes<!--Break--></h2><div><div id="ilc_accordion_70_10" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Scheduled maintenance window: Thursdays, 20:00–22:00<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Each Thursday there is a scheduled maintenance window between 20:00 and 22:00 during which we might restrict access to ILIAS at a relatively short notice for important service tasks, especially regarding the low-level server infrastructure. This will not necessarily happen every week and we are working hard to keep the actual downtime to a minimum (only a few minutes in most cases) but be we kindly ask our users to keep the possibility of short downtime in mind when accessing ILIAS during that period.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><!--Break--></div><!--End of Grid Cell--></div><div style="position: relative;" class=" col-sm-12 col-md-6 col-lg-6 col-xl-6"><div class="ilc_section_Example ilCOPageSection"><div align="center">		<form class="c-form c-form--horizontal" enctype="multipart/form-data" name="login_form" action="ilias.php?baseClass=ilstartupgui&cmd=post&fallbackCmd=doStandardAuthentication&lang=en&client_id=Uni_Stuttgart" method="post">
+	<div class="c-form__header">
+		<div class="c-form__actions"><button class="btn btn-default"  data-action="">Login</button>
+</div>
+		
+		<div class="c-form__required">
+			<span class="asterisk">*</span><span class="small"> Required</span>
+		</div>
+		
+	</div>
+	
+	<fieldset class="c-input" data-il-ui-component="section-field-input" data-il-ui-input-name="login_form/input_3" tabindex="0">
+
+	<label ><h2>Login to ILIAS</h2>
+<span class="asterisk" aria-label="Required">*</span></label>
+
+	<div class="c-input__field">
+		<fieldset class="c-input" data-il-ui-component="text-field-input" data-il-ui-input-name="login_form/input_3/input_4">
+
+	<label  for="il_ui_fw_6acbd87ed54274_65625157">Username<span class="asterisk" aria-label="Required">*</span></label>
+
+	<div class="c-input__field">
+		<input id="il_ui_fw_6acbd87ed54274_65625157" type="text" name="login_form/input_3/input_4" class="c-field-text" />
+
+	</div>
+
+	
+
+	
+
+</fieldset><fieldset class="c-input" data-il-ui-component="password-field-input" data-il-ui-input-name="login_form/input_3/input_5" id="il_ui_fw_6acbd87ed5a749_70780164">
+
+	<label  for="il_ui_fw_6acbd87ed5a375_47698587">Password<span class="asterisk" aria-label="Required">*</span></label>
+
+	<div class="c-input__field">
+		<div class="c-field-password">
+	<input id="il_ui_fw_6acbd87ed5a375_47698587" type="password" name="login_form/input_3/input_5" autocomplete="off" />
+	
+	<span class="c-field-password__revelation-glyph c-field-password__revelation-glyph--reveal">
+		<a tabindex="0" class="glyph" href="#" aria-label="Eye Open - Click to reveal the input's contents" id="il_ui_fw_6acbd87ed55a03_19806604">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-eye-open
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</a>
+
+	</span>
+	<span class="c-field-password__revelation-glyph c-field-password__revelation-glyph--mask">
+		<a tabindex="0" class="glyph" href="#" aria-label="Eye Closed - Click to hide the input's contents" id="il_ui_fw_6acbd87ed59c19_86797428">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-eye-close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</a>
+
+	</span>
+	
+</div>
+
+	</div>
+
+	
+
+	
+
+</fieldset>
+	</div>
+
+	
+
+	
+
+</fieldset>
+	<div class="c-form__footer">
+		
+		<div class="c-form__required">
+			<span class="asterisk">*</span><span class="small"> Required</span>
+		</div>
+		
+		<div class="c-form__actions"><button class="btn btn-default"  data-action="">Login</button>
+</div>
+	</div>
+</form>
+		</div><!--Break--></div><div class="ilc_section_Information ilCOPageSection"><!--ilPageTocH244--><h2 id="ilPageTocA244" class="ilc_Paragraph ilc_heading2_Headline2"><!--PageTocPH-->Help with logging in to ILIAS or registering an account<!--Break--></h2><!--ilPageTocH345--><h3 id="ilPageTocA345" class="ilc_Paragraph ilc_heading3_Headline3"><!--PageTocPH-->»I have a question about ILIAS a the University of Stuttgart and I am a …«<!--Break--></h3><div><div id="ilc_accordion_70_11" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Student at the University of Stuttgart<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div><div id="ilc_accordion_70_12" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»How can I log in to ILIAS?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">As a student (incl. PHD students) of the University of Stuttgart you log in to ILIAS with your <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://www.tik.uni-stuttgart.de/en/support/user-accounts-passwords-and-mail-addresses/#id-2adfb839-0">university student account</a> (aka "TIK account"). No registration is necessary or indeed possible. An ILIAS account will be automatically created during your first login. <strong class="ilc_strong_Strong">The login username is the part in front of the <em class="ilc_em_Emph">@</em> of your university e-mail address (following the schema of <em class="ilc_em_Emph">st123456</em>), <em class="ilc_em_Emph">not</em> the whole address.</strong><br/><br/>In addition to your login a "local" ILIAS username will be generated to identify you <em class="ilc_em_Emph">only</em> inside the learning management system. ILIAS usernames at the University of Stuttgart follow the schema of <em class="ilc_em_Emph">FirstnameLastname</em> (plus an incremented number if the name already exisits, e.g. <em class="ilc_em_Emph">ArnoSchmidt3</em>).<br/><br/>If you are a new student, who is still waiting for the enrollment at the university to be finalized, be advised that it is <em class="ilc_em_Emph">not</em> possible to receive an ILIAS account ahead of your university account.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Help, I have problems logging in / I have forgotten my password and/or username!«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Please contact the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://www.tik.uni-stuttgart.de/en/support/user-helpdesk/">User Helpdesk</a>.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">As a student you log in to ILIAS with your central university account. These accounts are kept in a central directory system to which ILIAS only has read access. Therefore neither ILIAS nor the ILIAS support can reset your password (or tell you your login name).<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»How can I change my password?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">You can change the password for your university account on the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://siam.uni-stuttgart.de/">SIAM selfservice</a> page.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">As a student you log in to ILIAS with your central university account. These accounts are kept in a central directory system to which ILIAS only has read access. Therefore neither ILIAS nor the ILIAS support can reset your password (or tell you your login name).<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Why don’t I receive e-mails in ILIAS?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">ILIAS is the University of Stuttgart’s central learning mangement system, not the mail server and/or the web interface to your mailbox. For the latter please go here:<br/><br/><a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://mail.uni-stuttgart.de/">mail.uni-stuttgart.de</a><br/> <br/>Further information on the student mailboxes can be found here:<br/> <br/><a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="http://www.stud.uni-stuttgart.de/dienste/email/index_neu.en.html">www.stud.uni-stuttgart.de/dienste/email</a><!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have different question …«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div class="ilc_Paragraph ilc_text_block_Standard"><ul class="ilc_list_u_BulletedList"><li class="ilc_list_item_StandardListItem">Questions regarding specific courses/groups, learning materials, course access settings and passwords etc. should always be addressed to the lecturer actually teaching the course and/or the course administrator. You can find the course administrator/owner in the course’s Info tab and can write an ILIAS mail. Further contact information can usually be found on the department homepage. Please refrain from asking the ILIAS support for a lecturer’s contact information.</li><li class="ilc_list_item_StandardListItem">For questions regarding any aspect of your university account please contact only the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="http://www.tik.uni-stuttgart.de/beratung/index.en.html">Benutzerberatung</a> (student user support).</li><li class="ilc_list_item_StandardListItem">If you have specific question about or problems with ILIAS itself please write to <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:ilias-support@tik.uni-stuttgart.de">ilias-support@tik.uni-stuttgart.de</a>.</li></ul><!--Break--></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Lecturer / university staff<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div><div id="ilc_accordion_70_13" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»How can I log in to ILIAS?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">As a lecturer/staff member of the University of Stuttgart you log in directly using your central <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="http://www.tik.uni-stuttgart.de/dienste/siam/informationen/nutzerkonten/nutzer.html">university account</a> (aka <em class="ilc_em_Emph">ac</em> or <em class="ilc_em_Emph">SIAM</em> account). No registration is necessary or indeed possible. An ILIAS account will be automatically created during your fist login. The login name <em class="ilc_em_Emph">always</em> follows the scheme <em class="ilc_em_Emph">ac123456</em>. Only the short version (i.e. without @uni-stuttgart.de) may be used.<br/><br/>An ac account is automatically created for <em class="ilc_em_Emph">everybody</em> who gets any kind of employment contract via the university’s central administration. While the account creation happens automatically for everybody, the distribution of the account data (most likely) does not. The latter is usually done at the departmental level. When in doubt, please ask the administrator of your department who is responsible for issuing your account data to you. <em class="ilc_em_Emph">Under no cricumstances</em> will you receive your account data from the ILIAS support, so please refrain from asking us otherwise.<br/><br/>This also applies to any kind of guest lecturer with a central employment contract.<br/><br/>Permission for course creation (in the semester sub-categories of the study programme categories in the repository) is automatically granted when logging in with an ac account.<br/><br/>In addition to your login a "local" ILIAS username will be generated to identify you <em class="ilc_em_Emph">only</em> inside the learning management system. ILIAS usernames at the University of Stuttgart follow the schema of <em class="ilc_em_Emph">FirstnameLastname</em> (plus an incremented number if the name already exists, e.g. <em class="ilc_em_Emph">ArnoSchmidt3</em>).<br/><br/>Unfortunately, it is not possible to grant access to ILIAS for new staff members in advance of the creation and/or issuing of the central ac account.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Help, I have problems logging in / I have forgotten my password and/or username!«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Since the ac/SIAM account you use to log in to ILIAS is kept a central directory service (to which ILIAS only has read access), ILIAS cannot reset your password (and neither can we).<br/><br/>Regarding your login username please keep in mind that it must follow the schema of <em class="ilc_em_Emph">ac123456</em> – if it doesn’t, it is most likely simply the wrong username.<br/><br/>You can check whether your login works on the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://siam.uni-stuttgart.de/">SIAM selfservice</a> page.<br/><br/>Only the colleagues responsible for such matters in your department can reset your password for you. Often two or three people per department have that responsibility. (When in doubt, please ask the department administrator.) If, in case of an emergency, none of them are available, please contact the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:uniadmin-support@tik.uni-stuttgart.de">UniAdmin support</a>. Our colleagues will usually be able to help, too.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»How can I change my password?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">You can change your ac/SIAM account password via the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://siam.uni-stuttgart.de/">SIAM selfservice</a> page.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">It cannot be changed <em class="ilc_em_Emph">in</em> ILIAS.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Who is regarded as staff member?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Everybody for whom a valid ac/SIAM account exists in the university’s central directory service (no matter how temporary) is a staff member – at least as far as ILIAS is concerned. If you have any kind of employment contract via the central administration, this is you (compare <em class="ilc_em_Emph">»How can I log in to ILIAS?«</em> above).<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Do you offer ILIAS trainings?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Yes, in principal, though at the moment we are restructuring our ILIAS training offers. We’ll make further announcements regarding this as soon as possible.<br/><br/>In the meantime please to not hesitate to ask for individual training offers via <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:ilias-support@tik.uni-stuttgart.de">ilias-support@tik.uni-stuttgart.de</a>.<br/><br/>We also offer individual training on the departmental level.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have a different question …«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div class="ilc_Paragraph ilc_text_block_Standard"><ul class="ilc_list_u_BulletedList"><li class="ilc_list_item_StandardListItem">Please direct all questions regarding your ac account to the responsible colleagues in your department, or contact <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:uniadmin-support@tik.uni-stuttgart.de">UniAdmin support</a>.</li><li class="ilc_list_item_StandardListItem">If you have questions regarding the usage of, or problems with, ILIAS itself, please write us at <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:ilias-support@tik.uni-stuttgart.de">ilias-support@tik.uni-stuttgart.de</a>.</li></ul><!--Break--></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Visiting student (from another university)<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div><div id="ilc_accordion_70_14" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">… from the University of Hohenheim or Tübingen, from the KIT or from the PH Ludwigsburg<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Lecturers of the Universities of <em class="ilc_em_Emph">Stuttgart</em>, <em class="ilc_em_Emph">Hohenheim</em>, <em class="ilc_em_Emph">Tübingen</em>, of the <em class="ilc_em_Emph">KIT</em> in Karlsruhe and the <em class="ilc_em_Emph">PH Ludwigsburg</em> can make their ILIAS courses availble for the students of each of the other four universities via a mechanism called E-Learning Community Server (ECS).<br/><br/>It is therefore not necessary and indeed not possible to request local accounts for students from those universities.<br/><br/>The sharing of the courses is an option (usually) activated by the lecturers themselves, so please ask the them whether they have already done so.<br/><br/>There is an exception to the latter: At the moment (since the summer of 2015), each semester the degree programs <em class="ilc_em_Emph">Anglistik</em>, <em class="ilc_em_Emph">Germanistik</em>, <em class="ilc_em_Emph">Linguistik</em> and <em class="ilc_em_Emph">Sportwissenschaft</em> are shared with the University of Hohenheim as a whole. No individual course needs to be shared.<br/><br/>If you are a student from one of the above-mentioned universities and are experiencing problems, please always contact your local ILIAS support, not us. If necessary, our colleagues will get in touch with us to resolve the matter.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">… from the State University of Music and the Performing Arts (HMDK)<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">As a student of the HMDK, please first check whether you are already enrolled at the University of Stuttgart, too. This is the most likeley case, in which you will receive a university account and have to follow the instructions for the University of Stuttgart’s regular students above.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">If that is definitely not the case, you can receive a registration/reactivation code for an ILIAS account from <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://www.hmdk-stuttgart.de/unsere-hochschule/personenverzeichnis/?no_cache=1&L=0&tx_wtdirectory_pi1%5Bshow%5D=4&cHash=8581c8e8eecc0076e024b3bd352b8fa8">Prof. Dr. Hermann</a> a the HMDK. Please contact him directly.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">Accounts registered/reactivated with a code are only valid for one semester. You will have to get a new account for each semester.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">… Stuttgart State Academy of Art and Design (ABK)<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">As a student of the ABK, please first check whether you are already enrolled at the University of Stuttgart, too. This is the most likeley case, in which you will receive a university account and have to follow the instructions for the University of Stuttgart’s regular students above.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">If that is definitely not the case, you can receive a registration/reactivation code for an ILIAS account from <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://www.abk-stuttgart.de/studium/studieren/pruefungsamt.html">the ABK’s Examination Office</a>. Please contact them directly.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">Accounts registered/reactivated with a code are only valid for one semester. You will have to get a new code for each semester.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">… from another university<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">External students (expressly enrolled at another university) who do not have a University student account including e-mail address of the University of Stuttgart and do not belong to one of the above-mentioned universities can receive a temporary central guest account (gs account) upon request by an institute/chair/facility or a staff member of the University of Stuttgart (usually for one semester), which can also be used for ILIAS.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">This means that external students usually have to contact the lecturer or the institute/chair/facility whose course(s) they wish to attend. Contact information for instructors can be found via the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="http://www.uni-stuttgart.de/studieren/studium/vvz/">Course Catalog</a> or the appropriate institute/facility website. Please refrain from asking ILIAS support for contact data of teachers.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">With the gs credentials, which such guest students receive via the respective institute, a direct login to ILIAS is possible. A registration is not necessary.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">As a rule, external students cannot request gs accounts or their reactivation/renewal for themselves.<!--Break--></p><div class="ilc_section_Special ilCOPageSection"><p class="ilc_Paragraph ilc_text_block_Standard">This does <em class="ilc_em_Emph">not</em> apply for ERASMUS+ and Overseas students. If you come to Stuttgart via the ERASMUS+ and Overseas program, you will (automatically) receive a regular student account from the university. Please see the information for regular students above.<!--Break--></p><!--Break--></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have received a code – how can I register or reactivate an account?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">To register a <em class="ilc_em_Emph">new</em> account please use the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://uni-s.de/ilias-account-registration">registration form</a>.<br/><br/>The <em class="ilc_em_Emph">reactivation</em> of an <em class="ilc_em_Emph">existing</em> account simply happens during normal login.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Help, I have an account but I forgot my password/username!«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Pleas use the "<a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://ilias3.uni-stuttgart.de/pwassist.php">Forgot password?</a>" or "<a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_usr_nameassist.html">Forgot username?</a>" features of ILIAS.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have a different question …«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div class="ilc_Paragraph ilc_text_block_Standard"><ul class="ilc_list_u_BulletedList"><li class="ilc_list_item_StandardListItem">Questions regarding specific courses/groups, learning materials, course access settings and passwords etc. should always be addressed to the lecturer currently teaching the course and/or the course administrator. You can find the course administrator/owner in the course’s Info tab and can write an ILIAS mail. Further contact information can usually be found on the department homepage. Please refrain from asking the ILIAS support for a lecturer’s contact information.</li><li class="ilc_list_item_StandardListItem">If you have specific question about or problems with ILIAS itself, please write to <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:ilias-support@tik.uni-stuttgart.de">ilias-support@tik.uni-stuttgart.de</a>.</li></ul><!--Break--></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Visiting lecturer<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div><div id="ilc_accordion_70_15" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»How do I get access to ILIAS?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Visiting lecturers (those who <em class="ilc_em_Emph">definitely</em> will not receive an ac/SIAM account, compare the information for staff members above) can receive a code for registering a restricted ILIAS account (usually for the duration of one semester). This code has to be requested <em class="ilc_em_Emph">by a department/lecturer/staff member</em> of the University of Stuttgart.<br/><br/>Visiting lecturers can <em class="ilc_em_Emph">under no circumstances</em> request a code for themselves.<br/><br/>The same applies to a code to reactivate an existing account.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have received a code – how can I register or reactivate an account?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">To register a <em class="ilc_em_Emph">new</em> account please use the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://uni-s.de/ilias-account-registration">registration form</a>.<br/><br/>The <em class="ilc_em_Emph">reactivation</em> of an <em class="ilc_em_Emph">existing</em> account simply happens during normal login.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Help, I have an account but I forgot my password/username!«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Pleas use the "<a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://uni-s.de/ilias-forgot-password">Forgot password?</a>" or "<a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://uni-s.de/ilias-forgot-username">Forgot username?</a>" features of ILIAS.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have a different question …«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">If you have a specific question about, or problems with, ILIAS itself, please write to <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:ilias-support@tik.uni-stuttgart.de">ilias-support@tik.uni-stuttgart.de</a>.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Guest student (Studium Generale)<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div><div id="ilc_accordion_70_16" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»How do I get access to ILIAS?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div class="ilc_Paragraph ilc_text_block_Standard">As a <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="http://www.uni-stuttgart.de/sg/gasthoerer/index.html">Studium Generale</a> guest student you automatically receive a code that enables you to register a new or reactivate an existing ILIAS account for one semester.<br/><br/>This code is <em class="ilc_em_Emph">only</em> distributed via the Studium Generale office. (Under <em class="ilc_em_Emph">no circumstances</em> will you receive a code from the ILIAS support.)<br/><br/><em class="ilc_em_Emph">Additional notes</em><ul class="ilc_list_u_BulletedList"><li class="ilc_list_item_StandardListItem">Since ILIAS access for Studium Generale guest users is a voluntary effort we can only offer limited e-mail support and no phone support for these guest users at this time.</li><li class="ilc_list_item_StandardListItem">The reactivation of an existing account is only possible after the account has actually become inactive.</li><li class="ilc_list_item_StandardListItem">The code is not a new password. Passwords of existing accounts do not change during reactivation.</li><li class="ilc_list_item_StandardListItem">If you register a new account even though an older account exists, you have to continue to use the new account; the old one will be deleted.</li></ul><!--Break--></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have received a code – how can I register or reactivate an account?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">To register a <em class="ilc_em_Emph">new</em> account please use the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://uni-s.de/ilias-account-registration">registration form</a>.<br/><br/>The <em class="ilc_em_Emph">reactivation</em> of an <em class="ilc_em_Emph">existing</em> account simply happens during normal login.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Help, I have an account but I forgot my password/username!«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Pleas use the "<a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://uni-s.de/ilias-forgot-password">Forgot password?</a>" or "<a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="https://uni-s.de/ilias-forgot-username">Forgot username?</a>" features of ILIAS.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»How do I gain access to ›my‹ courses?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">As a Studium Generale guest student you usually <em class="ilc_em_Emph">cannot</em> register for courses yourself. Instead you have to contact the course’s lecturer and ask to take part and to be added as a course member. Please give your ILIAS username to the lecturer for this purpose.<br/><br/>The lecturer/course administrator/owner can be found in a course’s Info tab. You can write a mail via ILIAS. Further contact information can usually be found on the department homepage. (When in doubt we recommend using the search function on the university homepage.)<br/><br/>After you have been added as a participant, the course will automatically be shown on your Personal Desktop in ILIAS.<br/><br/>Nach der Aufnahme erscheint der jeweilige Kurs direkt auf Ihrem <em class="ilc_em_Emph">Persönlichen Schreibtisch</em> in ILIAS im Bereich <em class="ilc_em_Emph">Ausgewählte Angebote</em>.<br/><br/>Selected courses from the <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="http://www.uni-stuttgart.de/hi/edv/tricks/ilias_gasthoerer.html">Department of History</a> are the exception – you can register for them directly. Please direct all inquiries about this to that department.<br/><br/>If you have problems registering for, or questions about, a specific course and/or its content, pleast always ask the lecturer.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have a different question …«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div class="ilc_Paragraph ilc_text_block_Standard">If you have a specific question about, or problems with, ILIAS itself (which are not answered above), please write to <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:ilias-support@tik.uni-stuttgart.de">ilias-support@tik.uni-stuttgart.de</a>.<br/><br/>Please do not ask us …<ul class="ilc_list_u_BulletedList"><li class="ilc_list_item_StandardListItem">… to send you a registration code,</li><li class="ilc_list_item_StandardListItem">… to grant you access to a course,</li><li class="ilc_list_item_StandardListItem">… how to access ILIAS etc.</li></ul><!--Break--></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">Other guest user<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><div><div id="ilc_accordion_70_17" data-copg-tabs-type="VerticalAccordion" class="ilc_va_cntr_AccordCntr" data-copg-tabs-toggle-class="il_VAccordionToggleDef" data-copg-tabs-toggle-act-class="il_VAccordionToggleActiveDef" data-copg-tabs-content-class="il_VAccordionContentDef" data-copg-tabs-behaviour="AllClosed" data-copg-tabs-save-url="./ilias.php?baseClass=ilaccordionpropertiesstoragegui&cmd=setOpenedTab&user_id=13" data-copg-tabs-active-head-class="ilc_va_iheada_AccordIHeadActive"><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»How do I get access to ILIAS?«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">External guest users (n.b. not guest students) can apply for a temporary guest account (gs account) through an institute/chair/department or an employee of the University of Stuttgart. This account can be used to access ILIAS without any additional registration.<!--Break--></p><p class="ilc_Paragraph ilc_text_block_Standard">The extension of an existing, expired account must also be requested through an institute or department.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»Help, I have an account but I forgot my password/username!«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">Guest users with a gs account who have forgotten their password and/or username should contact the person at the institute from whom they originally received their gs access data. These accounts are managed centrally by the SIAM group. ILIAS and ILIAS support are unable to help with username/password requests.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div class="ilc_va_icntr_AccordICntr"><div class="il_VAccordionToggleDef"><div tabindex="0" role="button" aria-expanded="false" class="ilc_va_ihead_AccordIHead&#10;&#9;&#9;&#9;&#9;"><div class="ilc_va_ihcap_AccordIHeadCap">»I have a different question …«<!--Break--></div><!--Break--></div></div><div class="il_VAccordionContentDef ilAccHideContent"><div class="ilc_va_icont_AccordICont" style=""><p class="ilc_Paragraph ilc_text_block_Standard">If you have specific question about or problems with ILIAS itself please write to <a class="ilc_link_ExtLink" rel="noopener" target="_blank" href="mailto:ilias-support@tik.uni-stuttgart.de">ilias-support@tik.uni-stuttgart.de</a>.<!--Break--></p><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div><div style="clear:both;"><!--Break--></div></div></div><!--Break--></div><a style="display:block;" href="https://ilias3.uni-stuttgart.de/go/root/1" target="_top" id="il__obj_1_70_2" class="ilc_section_Link ilCOPageSection"><p class="ilc_Paragraph ilc_text_block_Standard">Public Area<!--Break--></p><!--Break--></a><!--End of Grid Cell--></div><!--Break--></div><div style="clear:both;"><!--Break--></div><script></script><div class='il-copg-mob-fullscreen-modal'><dialog class="c-modal il-modal-roundtrip" tabindex="-1" id="il_ui_fw_6acbd87ed25808_41298913">
+	<div class="modal-dialog" role="document" data-replace-marker="component">
+		<div class="modal-content">
+			<div class="modal-header">
+				<form><button formmethod="dialog" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></form>
+				<h1 class="modal-title">Full Screen</h1>
+			</div>
+			<div class="modal-body">
+				
+				<iframe class='il-copg-mob-fullscreen' id='il-copg-mob-fullscreen-auth-70'></iframe>
+				
+				
+			</div>
+			<div class="modal-footer">
+				<form>
+					
+					
+					<button formmethod="dialog" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</dialog>
+</div><script type="module" src="./components/ILIAS/MediaObjects/js/src/presentation/presentation.js"></script><script type="module" src="./components/ILIAS/COPage/PC/InteractiveImage/js/presentation/src/presentation.js"></script>
+
+
+
+	
+</div>
+<div class="ilStartupSection">
+	
+	
+	
+	
+	
+	
+	<!--div class="ilStartupSection">
+		<ul class="ilStartupSectionRegistrationLinks">
+    
+    <li><a class="il_ContainerItemCommand" href="ilias.php?baseClass=ilstartupgui&cmdNode=101:3e&cmdClass=ilAccountRegistrationGUI&lang=en&client_id=Uni_Stuttgart">New Account Registration</a></li>
+    
+    
+    <li><a class="il_ContainerItemCommand" href="./index.php?client_id=Uni_Stuttgart&lang=en">Public Area</a></li>
+    
+    
+    <li><a class="il_ContainerItemCommand" href="ilias.php?baseClass=ilstartupgui&cmdNode=101:vz&cmdClass=ilPasswordAssistanceGUI&lang=en&client_id=Uni_Stuttgart">Forgot your password?</a></li>
+    <li><a class="il_ContainerItemCommand" href="ilias.php?baseClass=ilstartupgui&cmdNode=101:vz&cmdClass=ilPasswordAssistanceGUI&cmd=showUsernameAssistanceForm&lang=en&client_id=Uni_Stuttgart">Forgot your username?</a></li>
+    
+    
+</ul>
+	</div-->
+	
+	
+	<!--div class="ilStartupSection">
+		<a class="il_ContainerItemCommand" href="ilias.php?baseClass=ilstartupgui&cmd=showLegalDocuments&lang=en&client_id=Uni_Stuttgart&id=tos">Terms of Service</a>
+
+		
+	</div-->
+	
+</div>
+								
+								
+								
+								
+							</div>
+
+							
+
+							
+						</div>
+					</div>
+
+					
+					
+				
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+			<footer class="c-maincontrols c-maincontrols__footer">
+	
+	<section class="c-maincontrols__footer-grid c-maincontrols__footer-grid--md" data-section="permanent-link" aria-label="Footer Permanent Link" tabindex="0">
+		
+		<div class="c-maincontrols__footer-grid__item text-left">
+			
+
+			<div class="c-tooltip__container c-tooltip--top" aria-live="polite">
+    <button class="btn btn-default"  data-action="" id="il_ui_fw_6acbd87f277b68_22973493">Copy Link to Clipboard</button>
+
+    <div class="c-tooltip c-tooltip--hidden" role="tooltip">
+        Link to this page has been copied to the clipboard.
+    </div>
+</div>
+
+		</div>
+		
+
+		
+	</section>
+	
+	<section class="c-maincontrols__footer-grid c-maincontrols__footer-grid--sm" data-section="link-groups" aria-label="Footer Link-Groups" tabindex="0">
+		
+		<div class="c-maincontrols__footer-grid__item text-left">
+			
+			<strong>Legal Information</strong>
+			
+
+			<ul>
+	
+	<li><a href="https://ilias3.uni-stuttgart.de/go/usr/agreement">Terms of Service</a></li>
+	
+	<li><a href="https://ilias3.uni-stuttgart.de/go/impr/0">Legal Notice</a></li>
+	
+</ul>
+		</div>
+		
+		<div class="c-maincontrols__footer-grid__item text-left">
+			
+			<strong>Support</strong>
+			
+
+			<ul>
+	
+	<li><a href="ilias.php?baseClass=ilsystemsupportcontactsgui">Contact Technical Support</a></li>
+	
+</ul>
+		</div>
+		
+
+		
+	</section>
+	
+	<section class="c-maincontrols__footer-grid c-maincontrols__footer-grid--md" data-section="texts" aria-label="Footer Texts" tabindex="0">
+		
+		<div class="c-maincontrols__footer-grid__item text-left">
+			
+
+			powered by ILIAS (v10.12 2026-10-06)
+		</div>
+		
+
+		
+	</section>
+	
+</footer>
+
+		</main>
+	</div>
+
+
+<script src="assets/js/jquery.js?_v=10_12"></script>
+
+<script src="assets/js/core.js?_v=10_12"></script>
+
+<script src="assets/js/tagify.js?_v=10_12"></script>
+
+<script src="assets/js/tagInput.js?_v=10_12"></script>
+
+<script src="assets/js/dropzone.min.js?_v=10_12"></script>
+
+<script src="assets/js/dropzone.js?_v=10_12"></script>
+
+<script src="assets/js/input.js?_v=10_12"></script>
+
+<script src="assets/js/file.js?_v=10_12"></script>
+
+<script src="assets/js/input.factory.min.js?_v=10_12"></script>
+
+<script src="assets/js/modal.min.js?_v=10_12"></script>
+
+<script src="assets/js/button.js?_v=10_12"></script>
+
+<script src="./assets/js/moment-with-locales.min.js?_v=10_12"></script>
+
+<script src="assets/js/Basic.js?_v=10_12"></script>
+
+<script src="assets/js/GS.js?_v=10_12"></script>
+
+<script src="assets/js/stdpage.js?_v=10_12"></script>
+
+<script src="assets/js/toast.js?_v=10_12"></script>
+
+<script src="assets/js/mainbar.js?_v=10_12"></script>
+
+<script src="assets/js/maincontrols.min.js?_v=10_12"></script>
+
+<script src="assets/js/system_info.js?_v=10_12"></script>
+
+<script src="assets/js/footer.min.js?_v=10_12"></script>
+
+<script src="assets/js/counter.js?_v=10_12"></script>
+
+<script src="assets/js/image.min.js?_v=10_12"></script>
+
+<script src="assets/js/repository.js?_v=10_12"></script>
+
+<script src="components/ILIAS/COPage/js/ilCOPagePres.js?_v=10_12"></script>
+
+<script src="assets/js/accordion.js?_v=10_12"></script>
+
+<script src="https://ilias3.uni-stuttgart.de/assets/js/cdn-mathjax2-tex-mml-chtml-safe.js?_v=10_12"></script>
+
+<script src="assets/js/linkify.min.js?_v=10_12"></script>
+
+<script src="assets/js/linkify-element.min.js?_v=10_12"></script>
+
+<script src="assets/js/ilExtLink.js?_v=10_12"></script>
+
+<script src="./components/ILIAS/COPage/js/ilCOPageQuestionHandler.js?_v=10_12"></script>
+
+<script src="./components/ILIAS/COPage/PC/Tabs/js/presentation.js?_v=10_12"></script>
+
+<script src="assets/js/modal-confirmation.js?_v=10_12"></script>
+
+<script src="assets/js/Explorer2.js?_v=10_12"></script>
+
+<script src="./node_modules/jstree/dist/jstree.js?_v=10_12"></script>
+
+<script src="assets/js/SearchMainMenu.js?_v=10_12"></script>
+
+<script src="assets/js/ilHelp.js?_v=10_12"></script>
+
+<script src="assets/js/legacyAutocomplete.js?_v=10_12"></script>
+
+
+
+<script>
+	
+		il.Util.addOnLoad(function() {
+			try { il.repository.ui.init();
+il.repository.core.init('https://ilias3.uni-stuttgart.de') } catch (e) { console.log(e); }
+try { 
+            $(function () {
+                il.COPagePres.setFullscreenModalShowSignal('il_signal_6acbd87ed24784_01628987', '-auth-70');
+            });
+         } catch (e) { console.log(e); }
+try { $(document).on('il_signal_6acbd87ed24784_01628987', function(event, signalData) {
+                    let modal = document.getElementById('il_ui_fw_6acbd87ed25808_41298913');
+                    il.UI.modal.showModal(modal, {"ajaxRenderUrl":"","keyboard":true,"url":"#il_ui_fw_6acbd87ed25808_41298913"}, signalData, 'il_signal_6acbd87ed247a1_09926945');
+                });$(document).on('il_signal_6acbd87ed247b6_90832461', function(event, signalData) {
+                    const id = event.target.closest('.c-modal').id;
+                    il.UI.core.replaceContent(id, signalData.options.url, 'component');
+                }); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { il.ExtLink.autolink('.ilc_Paragraph, .ilc_page_fn_Footnote','ilc_link_ExtLink'); } catch (e) { console.log(e); }
+try { il.COPagePres.setFullscreenModalShowSignal('il_signal_6acbd87ed24784_01628987', '-auth-70'); } catch (e) { console.log(e); }
+try { il.ExtLink.autolink('.ilc_Paragraph, .ilc_page_fn_Footnote','ilc_link_ExtLink'); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_6acbd87ed55a03_19806604').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87ed54df0_23119680',
+							{
+								'id' : 'il_signal_6acbd87ed54df0_23119680', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_6acbd87ed59c19_86797428').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87ed54e26_96698560',
+							{
+								'id' : 'il_signal_6acbd87ed54e26_96698560', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $(document).on('il_signal_6acbd87ed54df0_23119680', function() {
+                        const fieldContainer = document.querySelector('#il_ui_fw_6acbd87ed5a749_70780164 .c-input__field .c-field-password');
+                        fieldContainer.classList.add('revealed');
+                        fieldContainer.getElementsByTagName('input').item(0).type='text';
+                    });$(document).on('il_signal_6acbd87ed54e26_96698560', function() {
+                        const fieldContainer = document.querySelector('#il_ui_fw_6acbd87ed5a749_70780164 .c-input__field .c-field-password');
+                        fieldContainer.classList.remove('revealed');
+                        fieldContainer.getElementsByTagName('input').item(0).type='password';
+                    }); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { il.GS.Client.init('{"hashing":true,"logging":false}'); } catch (e) { console.log(e); }
+try { il.Help.setAjaxUrl('ilias.php?baseClass=ilhelpgui&help_screen_id=start_up/force_login.0&cmdMode=asynch'); } catch (e) { console.log(e); }
+try { il.Help.listHelp(null); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { $('#il_ui_fw_6acbd87f25f2e9_80406240').on('click', function() {
+                                    $('body').trigger('il-help-toggle-slate');
+                                    return false;
+                                }) } catch (e) { console.log(e); }
+try { $('#il_ui_fw_6acbd87f2610f4_80644729').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f21b041_95765126',
+							{
+								'id' : 'il_signal_6acbd87f21b041_95765126', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					});$('#il_ui_fw_6acbd87f2610f4_80644729').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f21b812_34700400',
+							{
+								'id' : 'il_signal_6acbd87f21b812_34700400', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $(document).on('il_signal_6acbd87f21b812_34700400', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('toggle', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f266539_47978325'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f21b830_99560243', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('engage', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f266539_47978325'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f21b856_95998402', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('replace', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f266539_47978325'
+                    ); 
+                    return false;}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_6acbd87f2681d2_23749989').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f21b041_95765126',
+							{
+								'id' : 'il_signal_6acbd87f21b041_95765126', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					});$('#il_ui_fw_6acbd87f2681d2_23749989').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f25d800_01629811',
+							{
+								'id' : 'il_signal_6acbd87f25d800_01629811', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $(document).on('il_signal_6acbd87f25d800_01629811', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('toggle', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f2688e7_12666343'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f25d864_39764887', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('engage', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f2688e7_12666343'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f25d886_22224950', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('replace', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f2688e7_12666343'
+                    ); 
+                    return false;}); } catch (e) { console.log(e); }
+try { 
+					il.UI.maincontrols.metabar.init('il_ui_fw_6acbd87f268ad2_00740318');
+                    il.UI.maincontrols.metabar.get('il_ui_fw_6acbd87f268ad2_00740318').registerSignals(
+						'il_signal_6acbd87f21b041_95765126',
+						'il_signal_6acbd87f21b0c2_80060544',
+					);
+                    il.UI.maincontrols.metabar.get('il_ui_fw_6acbd87f268ad2_00740318').init();
+                    window.addEventListener(
+                        'resize',
+                        ()=>{il.UI.maincontrols.metabar.get('il_ui_fw_6acbd87f268ad2_00740318').init()}
+                    );
+				 } catch (e) { console.log(e); }
+try { 
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:0', 'triggerer', 'il_ui_fw_6acbd87f26a1d5_80218021', false);
+                        il.UI.maincontrols.mainbar.addMapping('494c4941535c4d61696e4d656e755c50726f76696465725c5374616e64617264546f704974656d7350726f76696465727c7265706f7369746f7279','0:0');
+                    
+$('#il_ui_fw_6acbd87f26a1d5_80218021').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f2695b4_08747943',
+							{
+								'id' : 'il_signal_6acbd87f2695b4_08747943', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:0","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { 
+                                    il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_6acbd87f26a5d4_16563945');
+                                    il.UI.maincontrols.mainbar.addPartIdAndEntry('0:0:1', 'triggerer', 'il_ui_fw_6acbd87f26b982_36372417');
+                                
+$('#il_ui_fw_6acbd87f26b982_36372417').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f26a5d4_16563945',
+							{
+								'id' : 'il_signal_6acbd87f26a5d4_16563945', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:0:1","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { $(document).on('il_signal_6acbd87f2237a7_63980490', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('toggle', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f26c161_81786597'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f2237c4_73531993', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('engage', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f26c161_81786597'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f2237d3_68653470', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('replace', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f26c161_81786597'
+                    ); 
+                    return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:0:1', 'slate', 'il_ui_fw_6acbd87f26c161_81786597');
+$('#il_ui_fw_6acbd87f26c161_81786597').on('in_view', function(event) {
+						$(this).trigger('il_signal_6acbd87f2237d3_68653470',
+							{
+								'id' : 'il_signal_6acbd87f2237d3_68653470', 'event' : 'in_view',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"url":".\/gs_content.php?item=494c4941535c5265706f7369746f72795c50726f76696465725c5265706f7369746f72794d61696e42617250726f76696465727c7265705f747265655f76696577"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $(document).on('il_signal_6acbd87f2233a4_71790962', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('toggle', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f26c340_50387468'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f2233b5_25706986', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('engage', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f26c340_50387468'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f2233c0_84268441', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('replace', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f26c340_50387468'
+                    ); 
+                    return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:0', 'slate', 'il_ui_fw_6acbd87f26c340_50387468'); } catch (e) { console.log(e); }
+try { 
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:1', 'triggerer', 'il_ui_fw_6acbd87f26cde9_75741297', false);
+                        il.UI.maincontrols.mainbar.addMapping('494c4941535c4d61696e4d656e755c50726f76696465725c437573746f6d4d61696e42617250726f76696465727c36313430623431306263303761','0:1');
+                    
+$('#il_ui_fw_6acbd87f26cde9_75741297').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f26c4d6_78483441',
+							{
+								'id' : 'il_signal_6acbd87f26c4d6_78483441', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:1","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $(document).on('il_signal_6acbd87f2239e0_84952440', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('toggle', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f271556_73307127'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f223a01_05514623', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('engage', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f271556_73307127'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f223a17_35739558', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('replace', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f271556_73307127'
+                    ); 
+                    return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:1', 'slate', 'il_ui_fw_6acbd87f271556_73307127'); } catch (e) { console.log(e); }
+try { 
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:2', 'triggerer', 'il_ui_fw_6acbd87f2728c3_23774787', false);
+                        il.UI.maincontrols.mainbar.addMapping('_mb_more_entry','0:2');
+                    
+$('#il_ui_fw_6acbd87f2728c3_23774787').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f271732_50731960',
+							{
+								'id' : 'il_signal_6acbd87f271732_50731960', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:2","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $(document).on('il_signal_6acbd87f269317_49911993', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('toggle', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f272e16_00392178'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f269344_15763365', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('engage', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f272e16_00392178'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f269358_02273176', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('replace', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f272e16_00392178'
+                    ); 
+                    return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:2', 'slate', 'il_ui_fw_6acbd87f272e16_00392178'); } catch (e) { console.log(e); }
+try { il.UI.maincontrols.mainbar.addToolEntry('T:0', false, true, '696c48656c704d65746142617250726f76696465727c68656c70');
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('T:0', 'triggerer', 'il_ui_fw_6acbd87f2739b4_67593968', true);
+                        il.UI.maincontrols.mainbar.addMapping('696c48656c704d65746142617250726f76696465727c68656c70','T:0');
+                    
+$('#il_ui_fw_6acbd87f2739b4_67593968').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f272fb5_97233571',
+							{
+								'id' : 'il_signal_6acbd87f272fb5_97233571', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"T:0","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { 
+                                                 $('body').on('il-help-toggle-slate', function(){
+                                                    if (!$('#il_ui_fw_6acbd87f274137_83915337').hasClass('disengaged')) {
+                                                        il.Help.resetCurrentPage();
+                                                        il.UI.maincontrols.mainbar.removeTool('696c48656c704d65746142617250726f76696465727c68656c70');
+                                                    } else {
+                                                        il.UI.maincontrols.mainbar.engageTool('696c48656c704d65746142617250726f76696465727c68656c70');
+                                                        const panel = document.getElementById('ilHelpPanel');
+                                                        const firstFocusElement = panel.querySelector('a,input,[role=\'button\'],button');
+                                                        if (firstFocusElement) {
+                                                            firstFocusElement.focus();
+                                                        }
+                                                    }
+                                                 });
+$(document).on('il_signal_6acbd87f2282b7_77935710', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('toggle', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f274137_83915337'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f2282f9_41769148', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('engage', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f274137_83915337'
+                    ); 
+                    return false;});$(document).on('il_signal_6acbd87f228301_41572104', function(event, signalData) { 
+                        il.UI.maincontrols.slate.onSignal('replace', 
+                        event, 
+                        signalData, 
+                        'il_ui_fw_6acbd87f274137_83915337'
+                    ); 
+                    return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('T:0', 'slate', 'il_ui_fw_6acbd87f274137_83915337'); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_6acbd87f274b15_75300301').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f223269_51612757',
+							{
+								'id' : 'il_signal_6acbd87f223269_51612757', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"action":"toggle_tools"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_6acbd87f2759f8_83336265').on('click', function(event) {
+						$(this).trigger('il_signal_6acbd87f223238_59893470',
+							{
+								'id' : 'il_signal_6acbd87f223238_59893470', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"action":"disengage_all"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { il.Language.setLangVar('close', "Close"); } catch (e) { console.log(e); }
+try { il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_6acbd87f223238_59893470');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_6acbd87f223269_51612757');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_6acbd87f2695b4_08747943');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_6acbd87f26c4d6_78483441');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_6acbd87f271732_50731960');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_6acbd87f272fb5_97233571');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_6acbd87f228479_40523986');
+                    window.addEventListener('resize', il.UI.maincontrols.mainbar.adjustToScreenSize);
+                    il.UI.maincontrols.mainbar.init('');
+                 } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { document.getElementById("il_ui_fw_6acbd87f277b68_22973493").addEventListener('click', e => il.Footer.permalink.copyText("https:\/\/ilias3.uni-stuttgart.de\/go\/auth\/login")
+                        .then(() => il.Footer.permalink.showTooltip(e.target.nextElementSibling, 5000))); } catch (e) { console.log(e); }
+		});
+	
+</script>
+
+
+</body>
+</html>
