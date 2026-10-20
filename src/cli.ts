@@ -6,7 +6,7 @@ import { Command } from "commander";
 import { type Config, CONFIG_PATH, loadConfig, saveConfig } from "./config.js";
 import { Daemon, log, syncAll } from "./daemon.js";
 import { IliasClient } from "./ilias/client.js";
-import { APP_PATH, installLaunchAgent, uninstallLaunchAgent } from "./launchagent.js";
+import { installStartup, uninstallStartup } from "./startup.js";
 import { deletePassword, getPassword, setPassword } from "./keychain.js";
 import { parseSemester } from "./ilias/parse.js";
 import { startControlServer } from "./server.js";
@@ -19,7 +19,7 @@ const expandHome = (p: string) => resolve(p.replace(/^~(?=$|\/)/, homedir()));
 async function requirePassword(config: Config): Promise<string> {
   const pw = await getPassword(config.baseUrl, config.username);
   if (pw) return pw;
-  if (!process.stdin.isTTY) throw new Error("No password in Keychain. Run `ilias-sync setup` first.");
+  if (!process.stdin.isTTY) throw new Error("No password in Windows Credential Manager. Run `ilias-sync setup` first.");
   return passwordPrompt({ message: `ILIAS password for ${config.username}:`, mask: true });
 }
 
@@ -60,7 +60,7 @@ async function chooseCourses(config: Config, pw: string): Promise<Config["course
 
 const program = new Command("ilias-sync").description("Mirror your ILIAS courses to a local folder");
 
-program.command("setup").description("Log in, store credentials in the Keychain and pick courses").action(async () => {
+program.command("setup").description("Log in, store credentials in Windows Credential Manager and pick courses").action(async () => {
   const existing = await loadConfig().catch(() => undefined);
   const baseUrl = await input({ message: "ILIAS URL:", default: existing?.baseUrl ?? DEFAULT_BASE_URL });
   const username = await input({ message: "ILIAS username:", default: existing?.username });
@@ -75,7 +75,7 @@ program.command("setup").description("Log in, store credentials in the Keychain 
   config.courses = await chooseCourses(config, pw); // also verifies the login
   await setPassword(baseUrl, username, pw);
   await saveConfig(config);
-  console.log(`Saved ${config.courses.length} course(s) to ${CONFIG_PATH}. Password stored in Keychain.`);
+  console.log(`Saved ${config.courses.length} course(s) to ${CONFIG_PATH}. Password stored in Windows Credential Manager.`);
 });
 
 program.command("courses").description("Change which courses are synced").action(async () => {
@@ -97,32 +97,29 @@ program.command("sync").description("Run one sync pass")
 program.command("watch").description("Keep running and sync periodically (and after wake-up)")
   .option("-i, --interval <minutes>", "minutes between checks")
   .action(async (opts: { interval?: string }) => {
-    // Runs even without a config: the menu bar app can then complete setup via the control API.
+    // Runs even without a config so local clients can complete setup via the control API.
     const daemon = new Daemon(undefined, undefined, opts.interval ? Number(opts.interval) : undefined);
     const { port } = await startControlServer(daemon);
     log(`Background sync started (control API on 127.0.0.1:${port}).`);
     await daemon.run();
   });
 
-program.command("install").description("Run the background sync (and the menu bar app, if built) at login").action(async () => {
+program.command("install").description("Run the background sync at Windows login").action(async () => {
   await loadConfig(); // make sure setup has been done
-  const { plistPath, logPath, appInstalled } = await installLaunchAgent();
-  console.log(`Installed ${plistPath}. ilias-sync now runs at login and is running now.`);
-  console.log(appInstalled
-    ? `Menu bar app installed to ${APP_PATH} and started.`
-    : "Menu bar app not built (run `npm run build:app` first to include it).");
+  const { startupFile, logPath } = await installStartup();
+  console.log(`Installed ${startupFile}. Start ilias-sync with \`ilias-sync watch\` now, then at the next Windows login.`);
   console.log(`Log: ${logPath}`);
 });
 
-program.command("uninstall").description("Stop running at login").action(async () => {
-  await uninstallLaunchAgent();
-  console.log("LaunchAgent removed.");
+program.command("uninstall").description("Stop running at Windows login").action(async () => {
+  await uninstallStartup();
+  console.log("Windows Startup entry removed.");
 });
 
-program.command("logout").description("Remove the stored password from the Keychain").action(async () => {
+program.command("logout").description("Remove the stored password from Windows Credential Manager").action(async () => {
   const config = await loadConfig();
   await deletePassword(config.baseUrl, config.username);
-  console.log("Password removed from Keychain.");
+  console.log("Password removed from Windows Credential Manager.");
 });
 
 program.parseAsync().catch((err: Error) => {

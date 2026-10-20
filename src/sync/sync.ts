@@ -14,7 +14,7 @@ export interface SyncResult {
   course: string;
   added: string[];
   updated: string[];
-  /** Absolute paths of new/updated files, for the menu bar app. */
+  /** Absolute paths of new/updated files, for local clients. */
   files: { label: string; path: string; updated: boolean }[];
   unchanged: number;
   skippedTypes: Record<string, number>;

@@ -11,7 +11,7 @@ import { getPassword, setPassword } from "./keychain.js";
 import { parseSemester } from "./ilias/parse.js";
 import { sanitizeName } from "./sync/fsnames.js";
 
-/** Where the menu bar app finds the port and key of the running daemon. */
+/** Where local clients find the port and key of the running daemon. */
 export const DAEMON_INFO_PATH = join(CONFIG_DIR, "daemon.json");
 
 class HttpError extends Error {
@@ -23,7 +23,7 @@ class HttpError extends Error {
 const CredentialsSchema = z.object({
   baseUrl: z.url(),
   username: z.string().min(1),
-  /** Omitted → use the password stored in the Keychain for this account. */
+  /** Omitted -> use the password stored in Windows Credential Manager. */
   password: z.string().min(1).optional(),
 });
 
@@ -71,8 +71,8 @@ async function loggedInClient(creds: z.infer<typeof CredentialsSchema>): Promise
 }
 
 /**
- * Local control API for the menu bar app. Bound to 127.0.0.1 and protected by a
- * random bearer token that is written (mode 0600) next to the config.
+ * Local control API. Bound to 127.0.0.1 and protected by a random bearer token
+ * stored in the per-user config directory.
  */
 export async function startControlServer(daemon: Daemon, opts: { infoPath?: string } = {}): Promise<{ server: Server; port: number; token: string }> {
   const token = randomBytes(32).toString("hex");

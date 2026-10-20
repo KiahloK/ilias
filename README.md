@@ -1,39 +1,109 @@
 # ilias-sync
 
-Mirrors selected ILIAS courses (built against ILIAS 9 at Uni Stuttgart) into local folders and keeps them up to date.
+`ilias-sync` mirrors selected ILIAS courses into local Windows folders. It
+downloads course files, exercise sheets, and optionally Opencast recordings,
+then keeps local copies up to date.
 
-```bash
+## Requirements
+
+- Windows 10 or newer
+- Node.js 20 or newer
+- An ILIAS account with access to the courses to sync
+
+## Install and configure
+
+From PowerShell in this repository:
+
+```powershell
 npm install
-npm run dev -- setup              # login, pick courses + target folders (password goes to macOS Keychain)
-npm run dev -- sync --dry-run     # show what would be downloaded
-npm run dev -- sync               # one sync pass (--no-videos to skip recordings)
-npm run dev -- watch              # keep running, check every 30 min (configurable: -i <minutes>)
-npm run dev -- courses            # change course selection
+npm run build
+node dist\cli.js setup
 ```
 
-- Config: `~/.config/ilias-sync/config.json`
-- Per course, `.ilias-sync-state.json` remembers what was downloaded (ILIAS version/date/size).
-- When a file changes on ILIAS, the old local copy is kept as `Name (YYYY-MM-DD).ext`.
-- Sessions ("Sitzungen") are only checked once they have started.
-- Exercises (Übungen): assignment sheets are downloaded (once; ILIAS shows no version info for them).
-- Opencast lecture recordings are saved as `YYYY-MM-DD Title.mp4` (~500 MB each). Toggle per course in `setup`/`courses`, or skip once with `sync --no-videos`.
-- Not synced: forums, weblinks, course links.
+`setup` verifies the login, lets you select courses and target folders, and
+stores the password in **Windows Credential Manager**. The course configuration
+is stored at:
 
-## Run automatically at login (macOS)
-
-```bash
-npm run build                # background sync (TypeScript → dist/)
-npm run build:app            # menu bar app (SwiftUI → macos/build/ILIAS Sync.app), no Xcode needed
-node dist/cli.js install     # both start now and at every login
-node dist/cli.js uninstall   # remove both again
+```text
+%USERPROFILE%\.config\ilias-sync\config.json
 ```
 
-- **Background sync** (`watch`, LaunchAgent `de.ilias-sync.watch`): syncs at login, every 30 min
-  and right after wake-up; restarted automatically if it crashes. Log: `~/Library/Logs/ilias-sync.log`.
-- **Menu bar app** (`~/Applications/ILIAS Sync.app`): status, recent files, Sync now, Pause, and a
-  Settings window for URL, account (password → Keychain), courses, folders, recordings and interval.
-  Quitting it does not stop the background sync.
-- The app talks to the background sync through a local API on `127.0.0.1`; its random port and key
-  are in `~/.config/ilias-sync/daemon.json` (readable only by you).
+You can use the development command instead of the compiled CLI while working
+on the project:
 
-After changing code: rebuild (`npm run build` / `npm run build:app`) and run `node dist/cli.js install` again.
+```powershell
+npm run dev -- setup
+```
+
+## Commands
+
+```powershell
+node dist\cli.js sync --dry-run       # show changes without downloading
+node dist\cli.js sync                 # run one sync pass
+node dist\cli.js sync --no-videos     # skip recordings for this pass
+node dist\cli.js courses              # change selected courses
+node dist\cli.js watch                # run continuously every 30 minutes
+node dist\cli.js logout               # remove the saved password
+```
+
+Use `--course "part of title"` to sync only matching courses. The interval and
+download concurrency are stored in the config file.
+
+## Run automatically at Windows login
+
+After setup and a build:
+
+```powershell
+node dist\cli.js install
+```
+
+This creates a per-user command file in the Windows Startup folder. It starts
+the background `watch` process when you sign in and writes its log to:
+
+```text
+%USERPROFILE%\.config\ilias-sync\ilias-sync.log
+```
+
+Remove automatic startup with:
+
+```powershell
+node dist\cli.js uninstall
+```
+
+The background process exposes a local, token-protected control API on
+`127.0.0.1`. Its temporary connection information is kept in:
+
+```text
+%USERPROFILE%\.config\ilias-sync\daemon.json
+```
+
+## How it works
+
+1. `setup` logs in to ILIAS and discovers the courses available on the
+   dashboard.
+2. `sync` crawls each selected course and follows supported folders,
+   exercises, sessions, and Opencast series.
+3. Downloaded files are written into the configured course folders. Each
+   course has a `.ilias-sync-state.json` file containing the ILIAS metadata
+   used to detect unchanged files.
+4. When ILIAS reports a changed file, the previous local copy is kept with its
+   old date in the filename before the new copy is written.
+5. `watch` repeats the process on the configured interval and retries after
+   transient failures. `install` only arranges for `watch` to start at login;
+   it does not duplicate the crawler.
+
+Forums, web links, and course links are intentionally not synchronized.
+Recordings are opt-in per course and can be skipped for an individual run
+with `--no-videos`.
+
+## Development
+
+```powershell
+npm test
+npm run typecheck
+npm run build
+```
+
+The `macos` directory is retained as historical source from the original
+project. This fork targets the Windows CLI and Windows background startup
+workflow; the Swift menu-bar application is not part of the Windows build.
