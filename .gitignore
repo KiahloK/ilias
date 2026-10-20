@@ -1,3 +1,5 @@
 node_modules/
 dist/
 *.part
+macos/.build/
+macos/build/

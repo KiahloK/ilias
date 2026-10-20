@@ -1,6 +1,6 @@
 import { login } from "../auth.js";
 import { HttpClient } from "../http.js";
-import { type Assignment, parseAssignmentFiles, parseContainer, parseExerciseOverview, parseMemberships, parseOpencastSeries } from "./parse.js";
+import { type Assignment, parseAssignmentFiles, parseContainer, parseExerciseOverview, parseMemberships, parseOpencastSeries, sortCourses } from "./parse.js";
 import type { CourseEntry, IliasItem } from "./types.js";
 
 /** Logged-in ILIAS session that re-authenticates automatically when it expires. */
@@ -18,7 +18,7 @@ export class IliasClient {
 
   async courses(): Promise<CourseEntry[]> {
     const { html } = await this.http.getHtml("ilias.php?baseClass=ilDashboardGUI&cmd=show");
-    return parseMemberships(html);
+    return sortCourses(parseMemberships(html));
   }
 
   async children(refId: string): Promise<IliasItem[]> {

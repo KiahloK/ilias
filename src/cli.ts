@@ -4,10 +4,12 @@ import { join, resolve } from "node:path";
 import { checkbox, confirm, input, password as passwordPrompt } from "@inquirer/prompts";
 import { Command } from "commander";
 import { type Config, CONFIG_PATH, loadConfig, saveConfig } from "./config.js";
-import { log, syncAll, watch } from "./daemon.js";
+import { Daemon, log, syncAll } from "./daemon.js";
 import { IliasClient } from "./ilias/client.js";
-import { installLaunchAgent, uninstallLaunchAgent } from "./launchagent.js";
+import { APP_PATH, installLaunchAgent, uninstallLaunchAgent } from "./launchagent.js";
 import { deletePassword, getPassword, setPassword } from "./keychain.js";
+import { parseSemester } from "./ilias/parse.js";
+import { startControlServer } from "./server.js";
 import { sanitizeName } from "./sync/fsnames.js";
 
 const DEFAULT_BASE_URL = "https://ilias3.uni-stuttgart.de/";
@@ -31,7 +33,7 @@ async function chooseCourses(config: Config, pw: string): Promise<Config["course
     message: "Which courses should be synced? (space = toggle, enter = confirm)",
     pageSize: 20,
     choices: available.map((c) => ({
-      name: `${c.title}${c.group ? `  (${c.group})` : ""}`,
+      name: `${c.title}${c.group ? `  (${parseSemester(c.group)?.label ?? c.group})` : ""}`,
       value: c,
       checked: current.has(c.refId),
     })),
@@ -95,16 +97,20 @@ program.command("sync").description("Run one sync pass")
 program.command("watch").description("Keep running and sync periodically (and after wake-up)")
   .option("-i, --interval <minutes>", "minutes between checks")
   .action(async (opts: { interval?: string }) => {
-    const config = await loadConfig();
-    await requirePassword(config); // fail early if no credentials are stored
-    log(`Watching ${config.courses.length} course(s), every ${opts.interval ?? config.intervalMinutes} min.`);
-    await watch(() => loadConfig(), requirePassword, opts.interval ? Number(opts.interval) : undefined);
+    // Runs even without a config: the menu bar app can then complete setup via the control API.
+    const daemon = new Daemon(undefined, undefined, opts.interval ? Number(opts.interval) : undefined);
+    const { port } = await startControlServer(daemon);
+    log(`Background sync started (control API on 127.0.0.1:${port}).`);
+    await daemon.run();
   });
 
-program.command("install").description("Start `watch` automatically at login (macOS LaunchAgent)").action(async () => {
+program.command("install").description("Run the background sync (and the menu bar app, if built) at login").action(async () => {
   await loadConfig(); // make sure setup has been done
-  const { plistPath, logPath } = await installLaunchAgent();
+  const { plistPath, logPath, appInstalled } = await installLaunchAgent();
   console.log(`Installed ${plistPath}. ilias-sync now runs at login and is running now.`);
+  console.log(appInstalled
+    ? `Menu bar app installed to ${APP_PATH} and started.`
+    : "Menu bar app not built (run `npm run build:app` first to include it).");
   console.log(`Log: ${logPath}`);
 });
 

@@ -200,3 +200,34 @@ export function parseOpencastSeries(html: string, pageUrl: string, now = new Dat
   });
   return out;
 }
+
+/**
+ * Semester of a dashboard group heading ("Winter 2026/27", "Sommer 2026", "WS 2026/27", …)
+ * as a sortable start date (winter starts in October, summer in April) and a short label.
+ */
+export function parseSemester(group: string | undefined): { start: number; label: string } | undefined {
+  if (!group) return undefined;
+  const winter = /^(?:winter(?:semester)?|ws)\s*(\d{4})\s*\/\s*(\d{2}|\d{4})\b/i.exec(group.trim());
+  if (winter) {
+    const year = Number(winter[1]);
+    return { start: year * 12 + 10, label: `WS ${String(year).slice(2)}/${String(year + 1).slice(2)}` };
+  }
+  const summer = /^(?:sommer(?:semester)?|summer(?:\s+term)?|ss)\s*(\d{4})\b/i.exec(group.trim());
+  if (summer) {
+    const year = Number(summer[1]);
+    return { start: year * 12 + 4, label: `SS ${String(year).slice(2)}` };
+  }
+  return undefined;
+}
+
+/** Newest semester first, then non-semester groups alphabetically; dashboard order within a group. */
+export function sortCourses(courses: CourseEntry[]): CourseEntry[] {
+  const rank = (c: CourseEntry) => parseSemester(c.group)?.start ?? -1;
+  return courses
+    .map((c, i) => ({ c, i }))
+    .sort((a, b) =>
+      rank(b.c) - rank(a.c) ||
+      (rank(a.c) === -1 ? (a.c.group ?? "~").localeCompare(b.c.group ?? "~", "de") : 0) ||
+      a.i - b.i)
+    .map(({ c }) => c);
+}

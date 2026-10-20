@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { parseAssignmentFiles, parseContainer, parseExerciseOverview, parseIliasDate, parseMemberships, parseOpencastSeries } from "../src/ilias/parse.js";
+import { parseAssignmentFiles, parseContainer, parseExerciseOverview, parseIliasDate, parseMemberships, parseOpencastSeries, parseSemester, sortCourses } from "../src/ilias/parse.js";
 
 const fixture = (name: string) => readFileSync(new URL(`../fixtures/${name}`, import.meta.url), "utf8");
 const BASE = "https://ilias3.uni-stuttgart.de/";
@@ -102,5 +102,24 @@ describe("parseOpencastSeries", () => {
     });
     expect(eps[0].url).toMatch(/^https:\/\/occdn1\.tik\.uni-stuttgart\.de\/.*composite\.mp4\?token=/);
     expect(new Set(eps.map((e) => e.refId)).size).toBe(21);
+  });
+});
+
+describe("semester sorting", () => {
+  it("parses semester headings", () => {
+    expect(parseSemester("Winter 2026/27")).toEqual({ start: 2026 * 12 + 10, label: "WS 26/27" });
+    expect(parseSemester("Sommer 2026")?.label).toBe("SS 26");
+    expect(parseSemester("Summer term 2025")?.label).toBe("SS 25");
+    expect(parseSemester("Arbeitsgruppen")).toBeUndefined();
+  });
+
+  it("puts the newest semester first and other groups last", () => {
+    const groups = [...new Set(sortCourses(parseMemberships(fixture("dashboard.html"))).map((c) => c.group))];
+    expect(groups.slice(0, 7)).toEqual([
+      "Winter 2026/27", "Sommer 2026", "Winter 2025/26", "Sommer 2025", "Winter 2024/25", "Sommer 2024", "Sommer 2023",
+    ]);
+    const rest = groups.slice(7);
+    expect(rest.every((g) => !parseSemester(g))).toBe(true);
+    expect(rest).toEqual([...rest].sort((a, b) => (a ?? "~").localeCompare(b ?? "~", "de")));
   });
 });

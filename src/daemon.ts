@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
-import { type Config } from "./config.js";
-import { sleep } from "./http.js";
+import { type Config, loadConfig } from "./config.js";
 import { IliasClient } from "./ilias/client.js";
+import { getPassword } from "./keychain.js";
 import { type SyncResult, syncCourse } from "./sync/sync.js";
 
 export const log = (msg: string) => console.log(`[${new Date().toLocaleString("de-DE")}] ${msg}`);
@@ -27,40 +27,130 @@ function notify(title: string, message: string): void {
   execFile("osascript", ["-e", `display notification "${esc(message)}" with title "${esc(title)}"`], () => {});
 }
 
+export type DaemonState = "idle" | "syncing" | "paused" | "error" | "needs-setup";
+
+export interface DaemonStatus {
+  state: DaemonState;
+  message?: string;
+  lastRun?: { startedAt: string; finishedAt: string; ok: boolean; added: number; updated: number; errors: number };
+  nextRun?: string;
+  recent: { label: string; path: string; updated: boolean; at: string }[];
+  courses: { title: string; targetDir: string }[];
+}
+
+const RECENT_LIMIT = 20;
+
 /**
- * Syncs now and then whenever the interval has elapsed. Wall-clock time is checked
- * every minute instead of sleeping for the whole interval, so a sync runs shortly
- * after the Mac wakes up (timers don't advance during sleep). The config is
- * re-read on every run, so `ilias-sync courses` takes effect without a restart.
+ * Background sync loop. Syncs at start, whenever the interval has elapsed, and on
+ * demand. Wall-clock time is checked every minute instead of sleeping for the whole
+ * interval, so a sync runs shortly after the Mac wakes up (timers stop during sleep).
+ * The config and password are re-read on every run so settings changes apply at once.
  */
-export async function watch(
-  getConfig: () => Promise<Config>,
-  getPassword: (config: Config) => Promise<string>,
-  intervalOverride?: number,
-): Promise<never> {
-  let failures = 0;
-  let nextRun = 0;
-  for (;;) {
-    if (Date.now() >= nextRun) {
-      let intervalMs = 30 * 60_000;
-      try {
-        const config = await getConfig();
-        intervalMs = (intervalOverride ?? config.intervalMinutes) * 60_000;
-        const results = await syncAll(config, await getPassword(config));
-        failures = 0;
-        nextRun = Date.now() + intervalMs;
-        const changed = results.flatMap((r) => [...r.added, ...r.updated]);
-        if (changed.length) {
-          notify("ILIAS Sync", changed.length === 1 ? `Neu: ${changed[0]}` : `${changed.length} neue/aktualisierte Dateien`);
-        }
-      } catch (err) {
-        failures++;
-        log(`Sync failed: ${(err as Error).message}`);
-        // Network is often not up right after wake; retry soon, backing off up to the interval.
-        nextRun = Date.now() + Math.min(intervalMs, 60_000 * 2 ** failures);
-      }
-      log(`Next check at ${new Date(nextRun).toLocaleTimeString("de-DE")}.`);
+export class Daemon {
+  private paused = false;
+  private running = false;
+  private failures = 0;
+  private nextRun = 0;
+  private wake?: () => void;
+  private status: DaemonStatus = { state: "idle", recent: [], courses: [] };
+
+  constructor(
+    private readonly getConfig: () => Promise<Config> = () => loadConfig(),
+    private readonly getSecret: (c: Config) => Promise<string | undefined> = (c) => getPassword(c.baseUrl, c.username),
+    private readonly intervalOverride?: number,
+  ) {}
+
+  getStatus(): DaemonStatus {
+    return {
+      ...this.status,
+      state: this.running ? "syncing" : this.paused ? "paused" : this.status.state,
+      nextRun: this.paused || !this.nextRun ? undefined : new Date(this.nextRun).toISOString(),
+    };
+  }
+
+  /** Runs a sync as soon as possible (no-op if one is already running). */
+  syncNow(): void {
+    this.paused = false;
+    this.nextRun = 0;
+    this.wake?.();
+  }
+
+  pause(): void {
+    this.paused = true;
+    log("Paused.");
+  }
+
+  resume(): void {
+    this.paused = false;
+    log("Resumed.");
+    this.wake?.();
+  }
+
+  async run(): Promise<never> {
+    for (;;) {
+      if (!this.paused && Date.now() >= this.nextRun) await this.syncOnce();
+      await new Promise<void>((resolve) => {
+        const timer = setTimeout(resolve, 60_000);
+        this.wake = () => { clearTimeout(timer); resolve(); };
+      });
     }
-    await sleep(60_000);
+  }
+
+  private async syncOnce(): Promise<void> {
+    let intervalMs = (this.intervalOverride ?? 30) * 60_000;
+    const startedAt = new Date().toISOString();
+    this.running = true;
+    try {
+      let config: Config;
+      try {
+        config = await this.getConfig();
+      } catch (err) {
+        this.status = { ...this.status, state: "needs-setup", message: (err as Error).message };
+        this.nextRun = Date.now() + intervalMs;
+        return;
+      }
+      intervalMs = (this.intervalOverride ?? config.intervalMinutes) * 60_000;
+      this.status.courses = config.courses.map((c) => ({ title: c.title, targetDir: c.targetDir }));
+      const password = await this.getSecret(config);
+      if (!password) {
+        this.status = { ...this.status, state: "needs-setup", message: "No password stored. Open Settings to log in." };
+        this.nextRun = Date.now() + intervalMs;
+        return;
+      }
+
+      const results = await syncAll(config, password);
+      const files = results.flatMap((r) => r.files);
+      const errors = results.reduce((n, r) => n + r.errors.length, 0);
+      const at = new Date().toISOString();
+      this.status.recent = [...files.map((f) => ({ ...f, at })), ...this.status.recent].slice(0, RECENT_LIMIT);
+      this.status.lastRun = {
+        startedAt, finishedAt: at, ok: errors === 0,
+        added: files.filter((f) => !f.updated).length,
+        updated: files.filter((f) => f.updated).length,
+        errors,
+      };
+      this.status.state = "idle";
+      this.status.message = errors ? `${errors} file(s) failed, see log` : undefined;
+      this.failures = 0;
+      this.nextRun = Date.now() + intervalMs;
+      if (files.length) {
+        notify("ILIAS Sync", files.length === 1 ? `Neu: ${files[0].label}` : `${files.length} neue/aktualisierte Dateien`);
+      }
+    } catch (err) {
+      this.failures++;
+      const message = (err as Error).message;
+      log(`Sync failed: ${message}`);
+      this.status = {
+        ...this.status,
+        state: "error",
+        message,
+        lastRun: { startedAt, finishedAt: new Date().toISOString(), ok: false, added: 0, updated: 0, errors: 1 },
+      };
+      // Network is often not up right after wake; retry soon, backing off up to the interval.
+      this.nextRun = Date.now() + Math.min(intervalMs, 60_000 * 2 ** this.failures);
+    } finally {
+      this.running = false;
+      if (this.nextRun) log(`Next check at ${new Date(this.nextRun).toLocaleTimeString("de-DE")}.`);
+    }
   }
 }

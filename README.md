@@ -22,12 +22,18 @@ npm run dev -- courses            # change course selection
 ## Run automatically at login (macOS)
 
 ```bash
-npm run build
-node dist/cli.js install     # LaunchAgent: runs `watch` at login, restarts if it crashes
-node dist/cli.js uninstall   # remove it again
-tail -f ~/Library/Logs/ilias-sync.log
+npm run build                # background sync (TypeScript → dist/)
+npm run build:app            # menu bar app (SwiftUI → macos/build/ILIAS Sync.app), no Xcode needed
+node dist/cli.js install     # both start now and at every login
+node dist/cli.js uninstall   # remove both again
 ```
 
-`watch` syncs at start, every 30 min, and right after the Mac wakes up. It re-reads the
-config before every run, so `courses` changes apply without restarting. After changing the
-code, run `npm run build` and `launchctl kickstart -k gui/$(id -u)/de.ilias-sync.watch`.
+- **Background sync** (`watch`, LaunchAgent `de.ilias-sync.watch`): syncs at login, every 30 min
+  and right after wake-up; restarted automatically if it crashes. Log: `~/Library/Logs/ilias-sync.log`.
+- **Menu bar app** (`~/Applications/ILIAS Sync.app`): status, recent files, Sync now, Pause, and a
+  Settings window for URL, account (password → Keychain), courses, folders, recordings and interval.
+  Quitting it does not stop the background sync.
+- The app talks to the background sync through a local API on `127.0.0.1`; its random port and key
+  are in `~/.config/ilias-sync/daemon.json` (readable only by you).
+
+After changing code: rebuild (`npm run build` / `npm run build:app`) and run `node dist/cli.js install` again.

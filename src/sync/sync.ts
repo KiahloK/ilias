@@ -14,6 +14,8 @@ export interface SyncResult {
   course: string;
   added: string[];
   updated: string[];
+  /** Absolute paths of new/updated files, for the menu bar app. */
+  files: { label: string; path: string; updated: boolean }[];
   unchanged: number;
   skippedTypes: Record<string, number>;
   errors: string[];
@@ -35,7 +37,7 @@ export async function syncCourse(client: IliasClient, course: CourseConfig, opts
   const root = course.targetDir;
   const state = await SyncState.load(root);
   const limit = pLimit(opts.concurrency ?? 3);
-  const result: SyncResult = { course: course.title, added: [], updated: [], unchanged: 0, skippedTypes: {}, errors: [] };
+  const result: SyncResult = { course: course.title, added: [], updated: [], files: [], unchanged: 0, skippedTypes: {}, errors: [] };
   const claimedPaths = new Set<string>(); // paths assigned during this run, to resolve name clashes
   const jobs: Promise<void>[] = [];
 
@@ -90,6 +92,7 @@ export async function syncCourse(client: IliasClient, course: CourseConfig, opts
           log(`  ${prev ? "~ updated" : "+ new"}: ${relPath}`);
         }
         (prev ? result.updated : result.added).push(label);
+        if (!opts.dryRun) result.files.push({ label, path: join(root, relPath), updated: !!prev });
       } catch (err) {
         result.errors.push(`${item.title}: ${(err as Error).message}`);
         log(`  ! ${item.title}: ${(err as Error).message}`);

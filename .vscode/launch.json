@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:ilias}/macos",
+            "name": "Debug ILIASSync (macos)",
+            "target": "ILIASSync",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug ILIASSync (macos)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:ilias}/macos",
+            "name": "Release ILIASSync (macos)",
+            "target": "ILIASSync",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release ILIASSync (macos)"
+        }
+    ]
+}
