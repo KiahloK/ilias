@@ -1,0 +1,86 @@
+name: Release
+
+# Build the Windows tray app and the macOS menu-bar app and publish them,
+# together with the CLI they both drive, as a GitHub Release. Trigger by
+# pushing a version tag:
+#
+#   git tag v1.2.0
+#   git push origin v1.2.0
+#
+# `workflow_dispatch` is there so a build can be re-run manually without
+# cutting a new tag (e.g. to fix a packaging issue); it does not publish a
+# release.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build CLI
+        run: |
+          npm ci
+          npm run build
+      - name: Install tray app
+        run: npm ci
+        working-directory: windows
+      # Ships with node_modules and dist/ already built so a user only needs
+      # Node.js installed, not this repo's toolchain.
+      - name: Package
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist, node_modules, package.json, windows `
+            -DestinationPath ilias-sync-windows.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ilias-sync-windows
+          path: ilias-sync-windows.zip
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build CLI
+        run: |
+          npm ci
+          npm run build
+      - name: Build menu-bar app
+        run: npm run build:mac-app
+      - name: Package
+        run: |
+          mkdir -p package
+          cp -R dist node_modules package.json package/
+          cp -R "macos/build/ILIAS Sync.app" "package/ILIAS Sync.app"
+          cd package && zip -r -y -q ../ilias-sync-macos.zip .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ilias-sync-macos
+          path: ilias-sync-macos.zip
+
+  release:
+    needs: [windows, macos]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            artifacts/ilias-sync-windows.zip
+            artifacts/ilias-sync-macos.zip
+          generate_release_notes: true

@@ -23,7 +23,7 @@ class HttpError extends Error {
 const CredentialsSchema = z.object({
   baseUrl: z.url(),
   username: z.string().min(1),
-  /** Omitted -> use the password stored in Windows Credential Manager. */
+  /** Omitted -> use the password stored in the OS keychain (macOS Keychain / Windows Credential Manager). */
   password: z.string().min(1).optional(),
 });
 

@@ -1,16 +1,109 @@
 # ilias-sync
 
-`ilias-sync` mirrors selected ILIAS courses into local Windows folders. It
-downloads course files, exercise sheets, and optionally Opencast recordings,
-then keeps local copies up to date.
+`ilias-sync` mirrors selected ILIAS courses into local folders on macOS and
+Windows. It downloads course files, exercise sheets, and optionally Opencast
+recordings, then keeps local copies up to date.
 
 ## Requirements
 
-- Windows 10 or newer
+- macOS 15 or newer, or Windows 10 or newer
 - Node.js 20 or newer
 - An ILIAS account with access to the courses to sync
 
-## Install and configure
+The commands below are the same CLI on both platforms; only the shell and a
+few OS paths differ.
+
+## macOS
+
+### Install and configure
+
+From Terminal in this repository:
+
+```sh
+npm install
+npm run build
+node dist/cli.js setup
+```
+
+`setup` verifies the login, lets you select courses and target folders, and
+stores the password in the **macOS Keychain**. The course configuration is
+stored at:
+
+```text
+~/.config/ilias-sync/config.json
+```
+
+Use the development command instead of the compiled CLI while working on the
+project:
+
+```sh
+npm run dev -- setup
+```
+
+### Commands
+
+```sh
+node dist/cli.js sync --dry-run       # show changes without downloading
+node dist/cli.js sync                 # run one sync pass
+node dist/cli.js sync --no-videos     # skip recordings for this pass
+node dist/cli.js courses              # change selected courses
+node dist/cli.js watch                # run continuously every 30 minutes
+node dist/cli.js logout               # remove the saved password
+```
+
+Use `--course "part of title"` to sync only matching courses. The interval
+and download concurrency are stored in the config file.
+
+### Run automatically at login
+
+After setup and a build:
+
+```sh
+node dist/cli.js install
+```
+
+This installs a `launchd` LaunchAgent that starts the background `watch`
+process at login and keeps it alive. If you've also built the menu-bar app
+(see below), `install` copies it to `~/Applications` and starts it the same
+way. Its log is written to:
+
+```text
+~/Library/Logs/ilias-sync.log
+```
+
+Remove automatic startup with:
+
+```sh
+node dist/cli.js uninstall
+```
+
+The background process exposes a local, token-protected control API on
+`127.0.0.1`. Its temporary connection information is kept in:
+
+```text
+~/.config/ilias-sync/daemon.json
+```
+
+### Menu-bar app
+
+The `macos` directory contains a native Swift menu-bar app, the macOS
+counterpart of the Windows tray app. It shows the sync status, opens a
+dropdown with recent files and course folders, and has a settings window for
+the account, courses and interval. It talks to the background `watch`
+process and can start it if it isn't running.
+
+```sh
+npm run build:mac-app   # builds "ILIAS Sync.app" into macos/build/, ad-hoc signed
+open "macos/build/ILIAS Sync.app"
+```
+
+Since the app isn't signed with an Apple Developer certificate, the first
+launch needs a right-click → **Open** (Gatekeeper otherwise blocks it). Use
+`node dist/cli.js install` to have it launch automatically at login instead.
+
+## Windows
+
+### Install and configure
 
 From PowerShell in this repository:
 
@@ -35,7 +128,7 @@ on the project:
 npm run dev -- setup
 ```
 
-## Commands
+### Commands
 
 ```powershell
 node dist\cli.js sync --dry-run       # show changes without downloading
@@ -49,7 +142,7 @@ node dist\cli.js logout               # remove the saved password
 Use `--course "part of title"` to sync only matching courses. The interval and
 download concurrency are stored in the config file.
 
-## Run automatically at Windows login
+### Run automatically at Windows login
 
 After setup and a build:
 
@@ -77,7 +170,7 @@ The background process exposes a local, token-protected control API on
 %USERPROFILE%\.config\ilias-sync\daemon.json
 ```
 
-## Tray app
+### Tray app
 
 The `windows` directory contains a system-tray app, the Windows counterpart of
 the macOS menu-bar app. It shows the sync status in the notification area,
@@ -116,14 +209,36 @@ Forums, web links, and course links are intentionally not synchronized.
 Recordings are opt-in per course and can be skipped for an individual run
 with `--no-videos`.
 
+## Releases
+
+Pushing a version tag builds and publishes a GitHub Release with a ready-to-run
+zip for each platform, via [`.github/workflows/release.yml`](.github/workflows/release.yml):
+
+```sh
+git tag v1.2.0
+git push origin v1.2.0
+```
+
+That runs two jobs in parallel — one on a `windows-latest` runner, one on a
+`macos-latest` runner — each of which installs dependencies, builds the CLI
+and that platform's app, and zips them up (`ilias-sync-windows.zip`,
+`ilias-sync-macos.zip`). A third job attaches both zips to a new GitHub
+Release for the tag. You can also trigger the workflow manually from the
+**Actions** tab (`workflow_dispatch`) to test the build without cutting a
+release.
+
+Each zip already contains `node_modules` and the compiled `dist/`, built on
+that OS, so someone downloading a release only needs Node.js installed, not
+this repo's build toolchain — `npm install`/`npm run build` are not required.
+Neither app is signed with a paid developer certificate, so macOS Gatekeeper
+and Windows SmartScreen will show a one-time warning on first launch (macOS:
+right-click → Open; Windows: "More info" → "Run anyway").
+
 ## Development
 
-```powershell
+```sh
 npm test
 npm run typecheck
 npm run build
+npm run build:mac-app   # macOS only; builds macos/build/"ILIAS Sync.app"
 ```
-
-The `macos` directory is retained as historical source from the original
-project. The Swift menu-bar application is not part of the Windows build; the
-`windows` tray app replaces it.

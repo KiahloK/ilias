@@ -2,6 +2,9 @@ import keytar from "keytar";
 
 const SERVICE = "ilias-sync";
 
+/** Where keytar actually stores the password, for user-facing messages. */
+export const KEYCHAIN_NAME = process.platform === "darwin" ? "macOS Keychain" : "Windows Credential Manager";
+
 /** Account key combines host and username so several ILIAS instances can coexist. */
 function account(baseUrl: string, username: string): string {
   return `${username}@${new URL(baseUrl).host}`;

@@ -7,7 +7,7 @@ import { type Config, CONFIG_PATH, loadConfig, saveConfig } from "./config.js";
 import { Daemon, log, syncAll } from "./daemon.js";
 import { IliasClient } from "./ilias/client.js";
 import { installStartup, uninstallStartup } from "./startup.js";
-import { deletePassword, getPassword, setPassword } from "./keychain.js";
+import { deletePassword, getPassword, KEYCHAIN_NAME, setPassword } from "./keychain.js";
 import { parseSemester } from "./ilias/parse.js";
 import { isDaemonRunning, startControlServer } from "./server.js";
 import { sanitizeName } from "./sync/fsnames.js";
@@ -19,7 +19,7 @@ const expandHome = (p: string) => resolve(p.replace(/^~(?=$|\/)/, homedir()));
 async function requirePassword(config: Config): Promise<string> {
   const pw = await getPassword(config.baseUrl, config.username);
   if (pw) return pw;
-  if (!process.stdin.isTTY) throw new Error("No password in Windows Credential Manager. Run `ilias-sync setup` first.");
+  if (!process.stdin.isTTY) throw new Error(`No password in ${KEYCHAIN_NAME}. Run \`ilias-sync setup\` first.`);
   return passwordPrompt({ message: `ILIAS password for ${config.username}:`, mask: true });
 }
 
@@ -60,7 +60,7 @@ async function chooseCourses(config: Config, pw: string): Promise<Config["course
 
 const program = new Command("ilias-sync").description("Mirror your ILIAS courses to a local folder");
 
-program.command("setup").description("Log in, store credentials in Windows Credential Manager and pick courses").action(async () => {
+program.command("setup").description(`Log in, store credentials in ${KEYCHAIN_NAME} and pick courses`).action(async () => {
   const existing = await loadConfig().catch(() => undefined);
   const baseUrl = await input({ message: "ILIAS URL:", default: existing?.baseUrl ?? DEFAULT_BASE_URL });
   const username = await input({ message: "ILIAS username:", default: existing?.username });
@@ -75,7 +75,7 @@ program.command("setup").description("Log in, store credentials in Windows Crede
   config.courses = await chooseCourses(config, pw); // also verifies the login
   await setPassword(baseUrl, username, pw);
   await saveConfig(config);
-  console.log(`Saved ${config.courses.length} course(s) to ${CONFIG_PATH}. Password stored in Windows Credential Manager.`);
+  console.log(`Saved ${config.courses.length} course(s) to ${CONFIG_PATH}. Password stored in ${KEYCHAIN_NAME}.`);
 });
 
 program.command("courses").description("Change which courses are synced").action(async () => {
@@ -109,22 +109,23 @@ program.command("watch").description("Keep running and sync periodically (and af
     await daemon.run();
   });
 
-program.command("install").description("Run the background sync at Windows login").action(async () => {
+program.command("install").description("Run the background sync at login").action(async () => {
   await loadConfig(); // make sure setup has been done
-  const { startupFile, logPath } = await installStartup();
-  console.log(`Installed ${startupFile}. Start ilias-sync with \`ilias-sync watch\` now, then at the next Windows login.`);
+  const { target, logPath, appInstalled } = await installStartup();
+  console.log(`Installed ${target}. Start ilias-sync with \`ilias-sync watch\` now, then at every login.`);
   console.log(`Log: ${logPath}`);
+  if (appInstalled) console.log("The menu-bar app was also installed and will launch at login.");
 });
 
-program.command("uninstall").description("Stop running at Windows login").action(async () => {
+program.command("uninstall").description("Stop running at login").action(async () => {
   await uninstallStartup();
-  console.log("Windows Startup entry removed.");
+  console.log(process.platform === "darwin" ? "LaunchAgent removed." : "Windows Startup entry removed.");
 });
 
-program.command("logout").description("Remove the stored password from Windows Credential Manager").action(async () => {
+program.command("logout").description(`Remove the stored password from ${KEYCHAIN_NAME}`).action(async () => {
   const config = await loadConfig();
   await deletePassword(config.baseUrl, config.username);
-  console.log("Password removed from Windows Credential Manager.");
+  console.log(`Password removed from ${KEYCHAIN_NAME}.`);
 });
 
 program.parseAsync().catch((err: Error) => {
