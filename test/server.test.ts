@@ -34,7 +34,9 @@ describe("control API", () => {
   it("publishes port and token in a private file", async () => {
     const info = JSON.parse(await readFile(infoPath, "utf8"));
     expect(info).toMatchObject({ token, port: Number(base.split(":").pop()) });
-    expect((await stat(infoPath)).mode & 0o777).toBe(0o600);
+    if (process.platform !== "win32") {
+      expect((await stat(infoPath)).mode & 0o777).toBe(0o600);
+    }
   });
 
   it("rejects requests without the token", async () => {

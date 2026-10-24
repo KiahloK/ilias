@@ -1,7 +1,7 @@
 import { randomBytes, timingSafeEqual } from "node:crypto";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
 import type { AddressInfo } from "node:net";
-import { chmod, mkdir, rm, writeFile } from "node:fs/promises";
+import { chmod, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { z } from "zod";
 import { type Config, CONFIG_DIR, ConfigSchema, loadConfig, saveConfig } from "./config.js";
@@ -11,7 +11,7 @@ import { getPassword, setPassword } from "./keychain.js";
 import { parseSemester } from "./ilias/parse.js";
 import { sanitizeName } from "./sync/fsnames.js";
 
-/** Where the menu bar app finds the port and key of the running daemon. */
+/** Where local clients find the port and key of the running daemon. */
 export const DAEMON_INFO_PATH = join(CONFIG_DIR, "daemon.json");
 
 class HttpError extends Error {
@@ -23,7 +23,7 @@ class HttpError extends Error {
 const CredentialsSchema = z.object({
   baseUrl: z.url(),
   username: z.string().min(1),
-  /** Omitted → use the password stored in the Keychain for this account. */
+  /** Omitted -> use the password stored in Windows Credential Manager. */
   password: z.string().min(1).optional(),
 });
 
@@ -70,9 +70,23 @@ async function loggedInClient(creds: z.infer<typeof CredentialsSchema>): Promise
   return client;
 }
 
+/** True if another daemon is already answering on the port published in its info file. */
+export async function isDaemonRunning(infoPath = DAEMON_INFO_PATH): Promise<boolean> {
+  try {
+    const { port, token } = JSON.parse(await readFile(infoPath, "utf8"));
+    const res = await fetch(`http://127.0.0.1:${port}/api/status`, {
+      headers: { Authorization: `Bearer ${token}` },
+      signal: AbortSignal.timeout(2000),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 /**
- * Local control API for the menu bar app. Bound to 127.0.0.1 and protected by a
- * random bearer token that is written (mode 0600) next to the config.
+ * Local control API. Bound to 127.0.0.1 and protected by a random bearer token
+ * stored in the per-user config directory.
  */
 export async function startControlServer(daemon: Daemon, opts: { infoPath?: string } = {}): Promise<{ server: Server; port: number; token: string }> {
   const token = randomBytes(32).toString("hex");

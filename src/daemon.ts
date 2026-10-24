@@ -1,4 +1,3 @@
-import { execFile } from "node:child_process";
 import { type Config, loadConfig } from "./config.js";
 import { IliasClient } from "./ilias/client.js";
 import { getPassword } from "./keychain.js";
@@ -22,11 +21,6 @@ export async function syncAll(config: Config, password: string, opts: { dryRun?:
   return results;
 }
 
-function notify(title: string, message: string): void {
-  const esc = (s: string) => s.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
-  execFile("osascript", ["-e", `display notification "${esc(message)}" with title "${esc(title)}"`], () => {});
-}
-
 export type DaemonState = "idle" | "syncing" | "paused" | "error" | "needs-setup";
 
 export interface DaemonStatus {
@@ -43,7 +37,7 @@ const RECENT_LIMIT = 20;
 /**
  * Background sync loop. Syncs at start, whenever the interval has elapsed, and on
  * demand. Wall-clock time is checked every minute instead of sleeping for the whole
- * interval, so a sync runs shortly after the Mac wakes up (timers stop during sleep).
+ * interval, so a sync runs shortly after the computer wakes up.
  * The config and password are re-read on every run so settings changes apply at once.
  */
 export class Daemon {
@@ -133,9 +127,7 @@ export class Daemon {
       this.status.message = errors ? `${errors} file(s) failed, see log` : undefined;
       this.failures = 0;
       this.nextRun = Date.now() + intervalMs;
-      if (files.length) {
-        notify("ILIAS Sync", files.length === 1 ? `Neu: ${files[0].label}` : `${files.length} neue/aktualisierte Dateien`);
-      }
+      if (files.length) log(`${files.length} new or updated file(s).`);
     } catch (err) {
       this.failures++;
       const message = (err as Error).message;

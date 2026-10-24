@@ -1,4 +1,4 @@
-/** Makes an ILIAS title safe as a macOS/Windows file or folder name. */
+/** Makes an ILIAS title safe as a Windows file or folder name. */
 export function sanitizeName(name: string): string {
   const cleaned = name
     .normalize("NFC")
