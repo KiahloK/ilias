@@ -1,8 +1,9 @@
 name: Release
 
-# Build the Windows tray app and the macOS menu-bar app and publish them,
-# together with the CLI they both drive, as a GitHub Release. Trigger by
-# pushing a version tag:
+# Build the Windows tray app (as a zip and as a standalone portable .exe) and
+# the macOS menu-bar app (as a zip), together with the CLI they drive, and
+# publish all three as assets on a GitHub Release. Trigger by pushing a
+# version tag:
 #
 #   git tag v1.2.0
 #   git push origin v1.2.0
@@ -35,7 +36,7 @@ jobs:
         working-directory: windows
       # Ships with node_modules and dist/ already built so a user only needs
       # Node.js installed, not this repo's toolchain.
-      - name: Package
+      - name: Package zip (checkout-style, includes the CLI)
         shell: pwsh
         run: |
           Compress-Archive -Path dist, node_modules, package.json, windows `
@@ -44,6 +45,20 @@ jobs:
         with:
           name: ilias-sync-windows
           path: ilias-sync-windows.zip
+      # A standalone, double-clickable exe for people who don't want the zip.
+      # The CLI (dist/ + node_modules) is bundled into it as a resource.
+      - name: Package portable exe (tray app)
+        working-directory: windows
+        run: npm run package
+      - name: Rename exe
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path windows/release-build -Filter *.exe -Recurse | Select-Object -First 1
+          Copy-Item $exe.FullName "ILIAS Sync.exe"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ilias-sync-windows-exe
+          path: "ILIAS Sync.exe"
 
   macos:
     runs-on: macos-latest
@@ -82,5 +97,6 @@ jobs:
         with:
           files: |
             artifacts/ilias-sync-windows.zip
+            artifacts/ILIAS Sync.exe
             artifacts/ilias-sync-macos.zip
           generate_release_notes: true

@@ -176,13 +176,24 @@ The `windows` directory contains a system-tray app, the Windows counterpart of
 the macOS menu-bar app. It shows the sync status in the notification area,
 opens a flyout with recent files and course folders when clicked, and has a
 Windows 11–style settings window for the account, courses and interval. It
-talks to the background `watch` process and starts it if it is not running.
+talks to the background `watch` process and starts it if it is not running
+(right-click the tray icon → **Start Background Sync**, or use `install`
+below).
+
+The easiest way to get it is the standalone `ILIAS Sync.exe` from the
+[Releases page](../../releases/latest) — it's a single portable file with the
+CLI bundled inside it, so no Node install or build step is needed, just Node.js
+on `PATH` to run the background sync. Double-click it, then use its
+**Settings** window to log in and pick courses instead of running `setup` on
+the command line.
+
+To run it from this checkout instead:
 
 ```powershell
 npm run build          # the tray app runs dist\cli.js
 cd windows
 npm install
-npm start
+npm start               # or double-click "Start ILIAS Sync.cmd" in that folder
 ```
 
 Right-click the tray icon for the classic menu. Under **Settings › General**,
@@ -220,19 +231,26 @@ git push origin v1.2.0
 ```
 
 That runs two jobs in parallel — one on a `windows-latest` runner, one on a
-`macos-latest` runner — each of which installs dependencies, builds the CLI
-and that platform's app, and zips them up (`ilias-sync-windows.zip`,
-`ilias-sync-macos.zip`). A third job attaches both zips to a new GitHub
-Release for the tag. You can also trigger the workflow manually from the
-**Actions** tab (`workflow_dispatch`) to test the build without cutting a
-release.
+`macos-latest` runner — each of which installs dependencies and builds the
+CLI and that platform's app. A third job attaches the results to a new
+GitHub Release for the tag:
 
-Each zip already contains `node_modules` and the compiled `dist/`, built on
-that OS, so someone downloading a release only needs Node.js installed, not
-this repo's build toolchain — `npm install`/`npm run build` are not required.
-Neither app is signed with a paid developer certificate, so macOS Gatekeeper
-and Windows SmartScreen will show a one-time warning on first launch (macOS:
-right-click → Open; Windows: "More info" → "Run anyway").
+- `ILIAS Sync.exe` — standalone portable Windows tray app; the CLI is bundled
+  inside it, so this is the one to just download and double-click.
+- `ilias-sync-windows.zip` — the CLI plus the tray app's source, for
+  terminal use or if you'd rather not run the packaged exe.
+- `ilias-sync-macos.zip` — the CLI plus the built `ILIAS Sync.app`.
+
+You can also trigger the workflow manually from the **Actions** tab
+(`workflow_dispatch`) to test the build without cutting a release.
+
+Everything is built fresh on that OS, with `node_modules` and the compiled
+`dist/` already included, so someone downloading a release only needs
+Node.js installed, not this repo's build toolchain — `npm install`/
+`npm run build` are not required. Nothing is signed with a paid developer
+certificate, so macOS Gatekeeper and Windows SmartScreen will show a
+one-time warning on first launch (macOS: right-click → Open; Windows:
+"More info" → "Run anyway").
 
 ## Development
 
@@ -241,4 +259,5 @@ npm test
 npm run typecheck
 npm run build
 npm run build:mac-app   # macOS only; builds macos/build/"ILIAS Sync.app"
+npm run build:win-app   # Windows only; builds windows/release-build/"ILIAS Sync.exe"
 ```

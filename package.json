@@ -8,6 +8,7 @@
     "dev": "tsx src/cli.ts",
     "build": "tsc",
     "build:mac-app": "bash macos/build.sh",
+    "build:win-app": "npm --prefix windows run package",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],
