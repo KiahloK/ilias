@@ -144,14 +144,16 @@ download concurrency are stored in the config file.
 
 ### Run automatically at Windows login
 
-After setup and a build:
+After setup and a build (or after installing the packaged `.exe`):
 
 ```powershell
 node dist\cli.js install
 ```
 
 This creates a per-user command file in the Windows Startup folder. It starts
-the background `watch` process when you sign in and writes its log to:
+the background `watch` process when you sign in and writes its log to. A
+packaged executable is launched directly; a source installation launches Node
+with `dist\cli.js`. The launcher retries after an unexpected process exit.
 
 ```text
 %USERPROFILE%\.config\ilias-sync\ilias-sync.log
