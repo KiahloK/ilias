@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
 import { access, cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { homedir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
@@ -46,21 +46,55 @@ const WIN_STARTUP_FILE = join(WIN_STARTUP_DIR, "ILIAS Sync.cmd");
 const WIN_LOG_PATH = join(homedir(), ".config", "ilias-sync", "ilias-sync.log");
 
 async function installWindowsStartup(): Promise<StartupResult> {
-  const cli = await compiledCli();
+  const executable = process.execPath;
+  const packaged = isPackagedExecutable(executable);
+  const cli = packaged ? join(projectDir(), "dist", "cli.js") : await compiledCli();
   await mkdir(WIN_STARTUP_DIR, { recursive: true });
   await mkdir(dirname(WIN_LOG_PATH), { recursive: true });
-  const command = [
-    "@echo off",
-    `cd /d ${quote(projectDir())}`,
-    `${quote(process.execPath)} ${quote(cli)} watch >> ${quote(WIN_LOG_PATH)} 2>&1`,
-    "",
-  ].join("\r\n");
+  const command = buildWindowsStartupCommand({
+    executable,
+    cli,
+    projectDir: projectDir(),
+    logPath: WIN_LOG_PATH,
+    packaged,
+  });
   await writeFile(WIN_STARTUP_FILE, command, "utf8");
   return { target: WIN_STARTUP_FILE, logPath: WIN_LOG_PATH };
 }
 
 async function uninstallWindowsStartup(): Promise<void> {
   await rm(WIN_STARTUP_FILE, { force: true });
+}
+
+export function buildWindowsStartupCommand(options: {
+  executable: string;
+  cli: string;
+  projectDir: string;
+  logPath: string;
+  packaged: boolean;
+}): string {
+  const launch = options.packaged
+    ? `${quote(options.executable)} watch`
+    : `${quote(options.executable)} ${quote(options.cli)} watch`;
+  const workingDirectory = options.packaged ? "" : `cd /d ${quote(options.projectDir)}\r\n`;
+
+  return [
+    "@echo off",
+    "setlocal",
+    ":retry",
+    workingDirectory.trimEnd(),
+    `${launch} >> ${quote(options.logPath)} 2>&1`,
+    "if not errorlevel 1 exit /b 0",
+    `>> ${quote(options.logPath)} echo Startup process exited with code %errorlevel%. Retrying in 60 seconds...`,
+    "timeout /t 60 /nobreak >nul",
+    "goto retry",
+    "",
+  ].filter((line) => line.length > 0).join("\r\n");
+}
+
+function isPackagedExecutable(executable: string): boolean {
+  return process.platform === "win32" && /\.exe$/i.test(executable) &&
+    !/^node(?:js)?\.exe$/i.test(basename(executable));
 }
 
 function quote(value: string): string {
